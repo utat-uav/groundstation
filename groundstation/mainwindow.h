@@ -4,7 +4,7 @@
 #include <QMainWindow>
 
 namespace Ui {
-class MainWindow;
+    class MainWindow;
 }
 
 class MainWindow : public QMainWindow
@@ -17,6 +17,8 @@ public:
 
 private slots:
     void on_actionOpen_triggered();
+public slots:
+    void label_clicked(int id);
 
 private:
     Ui::MainWindow *ui;

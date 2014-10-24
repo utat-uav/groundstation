@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include <QDebug>
 #include "ui_mainwindow.h"
 #include <QFileDialog>
 #include <QFile>
@@ -6,7 +7,9 @@
 #include <QMessageBox>
 #include <QTextStream>
 #include <string>
+#include "clickablelabel.h"
 
+#include "clickablelabel.cpp"
 using namespace std;
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -14,19 +17,28 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    std::vector<QLabel *> imageLabels;
-    for (int i = 0; i < 3; i++){
-        imageLabels.push_back(new QLabel(ui->scrollAreaWidgetContents));
-        ui->scrollAreaGridLayout->addWidget(imageLabels[i], i,1,1,1);
-        imageLabels[i]->setScaledContents(true);
-        QImage image =  QImage("C:/Users/wesley/Dropbox/Fun Pictures/580.jpg").scaledToWidth(100);
-        imageLabels[i]->setPixmap(QPixmap::fromImage(image));
+    std::vector<std::vector<ClickableLabel *>> imageLabels;
+    for (int i = 0; i < 5; i++){
+        imageLabels.push_back(std::vector<ClickableLabel *>());
+        for (int j = 0; j < 3; j++){
+            imageLabels[i].push_back(new ClickableLabel(i*3 + j,ui->scrollAreaWidgetContents));
+            ui->scrollAreaGridLayout->addWidget(imageLabels[i][j], i,j,1,1);
+            imageLabels[i][j]->setScaledContents(true);
+            QImage image =  QImage("C:/Users/wesley/Dropbox/Fun Stuff/580.jpg");
+            imageLabels[i][j]->setPixmap(QPixmap::fromImage(image));
+            QObject::connect(imageLabels[i][j], SIGNAL(clicked(int)),
+                             this, SLOT(label_clicked(int)));
+        }
     }
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::label_clicked(int id){
+    qDebug() << id;
 }
 
 void MainWindow::on_actionOpen_triggered()
