@@ -17,6 +17,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    ui->scrollAreaWidgetContents->setLayout(ui->scrollAreaGridLayout);
+
     std::vector<std::vector<ClickableLabel *>> imageLabels;
     for (int i = 0; i < 5; i++){
         imageLabels.push_back(std::vector<ClickableLabel *>());
@@ -25,7 +27,7 @@ MainWindow::MainWindow(QWidget *parent) :
             ui->scrollAreaGridLayout->addWidget(imageLabels[i][j], i,j,1,1);
             imageLabels[i][j]->setScaledContents(true);
             QImage image =  QImage("C:/Users/wesley/Dropbox/Fun Stuff/580.jpg");
-            imageLabels[i][j]->setPixmap(QPixmap::fromImage(image));
+            imageLabels[i][j]->setPixmap(QPixmap::fromImage(image).scaledToWidth(100));
             QObject::connect(imageLabels[i][j], SIGNAL(clicked(int)),
                              this, SLOT(label_clicked(int)));
         }
