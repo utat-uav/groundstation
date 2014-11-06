@@ -61,3 +61,8 @@ void MainWindow::on_actionOpen_triggered()
         file.close();
     }
 }
+
+void MainWindow::on_pushButton_clicked()
+{
+    //do stuff
+}
