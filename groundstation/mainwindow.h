@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "mainpic/mainpicwidget.h"
 
 namespace Ui {
     class MainWindow;
@@ -16,11 +17,8 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_actionOpen_triggered();
-    void on_pushButton_clicked();
 
 public slots:
-    void label_clicked(int id);
 
 private:
     Ui::MainWindow *ui;

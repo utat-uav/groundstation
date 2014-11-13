@@ -14,9 +14,13 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    clickablelabel.cpp
+    mainpic/mainpicdisplay.cpp \
+    mainpic/mainpicwidget.cpp \
+    mainpic/clickablelabel.cpp
 
 HEADERS  += mainwindow.h \
-    clickablelabel.h
+    mainpic/mainpicdisplay.h \
+    mainpic/mainpicwidget.h \
+    mainpic/clickablelabel.h
 
 FORMS    += mainwindow.ui
