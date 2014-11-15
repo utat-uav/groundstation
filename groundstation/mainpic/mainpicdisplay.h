@@ -7,12 +7,11 @@ class MainPicDisplay: public QLabel
 {
     Q_OBJECT
 public:
-    explicit MainPicDisplay(QWidget *parent = 0);
-    MainPicDisplay::~MainPicDisplay();
+    explicit MainPicDisplay(QWidget *parent = 0, int = 0, int = 0);
+    ~MainPicDisplay();
 
     void displayPicture(QString source);
 
-    void zoomIn();
 
 private:
     int width;
@@ -20,6 +19,8 @@ private:
 
 signals:
 public slots:
+    void zoomIn();
+    void zoomOut();
 
 protected:
 };
