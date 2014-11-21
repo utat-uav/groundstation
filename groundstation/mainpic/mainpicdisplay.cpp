@@ -6,8 +6,10 @@ MainPicDisplay::MainPicDisplay(QWidget *parent, int initWidth, int initHeight) :
 {
     setScaledContents(true);
 
-    width = initWidth;
-    height = initHeight;
+    width = 0;
+    maxWidth = 1000;
+    height = 0;
+    maxHeight = 1000;
     setFixedWidth(width);
     setFixedHeight(height);
 }
@@ -15,15 +17,26 @@ MainPicDisplay::MainPicDisplay(QWidget *parent, int initWidth, int initHeight) :
 MainPicDisplay::~MainPicDisplay(){
 }
 
+void MainPicDisplay::setMaxSize(const int& iwidth, const int& iheight){
+    maxWidth = iwidth;
+    maxHeight = iheight;
+
+    while (width > maxWidth || height > maxHeight){
+        zoomOut();
+    }
+}
+
 void MainPicDisplay::zoomIn(){
-    width = width * 1.2;
-    height = height * 1.2;
-    setFixedWidth(width);
-    setFixedHeight(height);
+    if (width < 1000 || height < 1000){
+        width = width * 1.2;
+        height = height * 1.2;
+        setFixedWidth(width);
+        setFixedHeight(height);
+    }
 }
 
 void MainPicDisplay::zoomOut(){
-    if(width>100&&height>100){      //mini dimensions
+    if(width > maxWidth || height > maxHeight){
         width /= 1.2;
         height /= 1.2;
         setFixedWidth(width);
@@ -31,7 +44,15 @@ void MainPicDisplay::zoomOut(){
     }
 }
 
+
+void MainPicDisplay::zoomToFit(){
+    width = maxWidth;
+    height = maxHeight;
+    setFixedWidth(width);
+    setFixedHeight(height);
+}
+
 void MainPicDisplay::displayPicture(QString source){
-    QImage image =  QImage(source);
+    QImage image = QImage(source);
     setPixmap(QPixmap::fromImage(image));
 }

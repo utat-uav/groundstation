@@ -10,17 +10,21 @@ public:
     explicit MainPicDisplay(QWidget *parent = 0, int = 0, int = 0);
     ~MainPicDisplay();
 
+    void setMaxSize(const int&, const int&);
     void displayPicture(QString source);
 
 
 private:
     int width;
     int height;
+    int maxWidth;
+    int maxHeight;
 
 signals:
 public slots:
     void zoomIn();
     void zoomOut();
+    void zoomToFit();
 
 protected:
 };

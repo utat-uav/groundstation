@@ -8,18 +8,22 @@
 #include <QTextStream>
 #include <string>
 
-using namespace std;
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
 
-    MainPicWidget* widget = new MainPicWidget();
-    setCentralWidget(widget);
+    mainPic = new MainPicWidget();
+    setCentralWidget(mainPic);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::resizeEvent(QResizeEvent *event){
+    QWidget::resizeEvent(event);
+    mainPic->mainWindowResized();
 }

@@ -3,7 +3,9 @@
 
 #include <QMainWindow>
 #include "mainpic/mainpicwidget.h"
+#include <QResizeEvent>
 
+using namespace std;
 namespace Ui {
     class MainWindow;
 }
@@ -19,9 +21,11 @@ public:
 private slots:
 
 public slots:
+    void resizeEvent(QResizeEvent *event);
 
 private:
     Ui::MainWindow *ui;
+    MainPicWidget* mainPic;
 };
 
 #endif // MAINWINDOW_H
