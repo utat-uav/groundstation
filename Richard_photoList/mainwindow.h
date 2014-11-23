@@ -36,8 +36,11 @@ private:
     QWidget* gridWidget;
     QScrollArea* area;
     QVBoxLayout* entireLayout;
-
+    QLabel** imageLabel;
+    QPixmap** imageMap;
+    void clearImage();
     void addImage();
+
 };
 
 #endif // MAINWINDOW_H

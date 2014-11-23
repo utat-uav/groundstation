@@ -28,19 +28,23 @@ MainWindow::MainWindow(QWidget *parent) :
     const int w = 150;
     const int h = 150;
 
-    // I want to display 100 pictures
-    const int number = 100;
-    // Every row I want to display 10 pictures
-    const int row = 10;
+    // I want to display 100 rows of pictures
+    // each row contains 8 column;
+    const int rows = 100;
+    const int columns = 8;
+
+    imageLabel = new QLabel*[rows * columns];
+    imageMap = new QPixmap*[rows * columns];
 
     // double for loop, treat the image grid like a matric
     // for every row, display each column in the current row
-    for (int k = 0; k < (number/row); k++) {
-        for (int j = 1; j < row; j++) {
-            QLabel* imageLabel = new QLabel();
-            QPixmap* imageMap = new QPixmap("/Users/richardyu/Pictures/conduct.png");
-            imageLabel->setPixmap(imageMap->scaled(w,h,Qt::KeepAspectRatio));
-            gridLayout->addWidget(imageLabel,j,k);
+    for (int k = 0; k < rows; k++) {
+        for (int j = 0; j < columns; j++) {
+            auto int index = k*columns + j;
+            imageLabel[index] = new QLabel();
+            imageMap[index] = new QPixmap("/Users/richardyu/Pictures/conduct.png");
+            imageLabel[index]->setPixmap(imageMap[index] ->scaled(w,h,Qt::KeepAspectRatio));
+            gridLayout->addWidget(imageLabel[index],k,j);
         }
     }
 
@@ -54,62 +58,35 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
+    delete []imageMap;
+    delete []imageLabel;
     delete gridLayout;
     delete gridWidget;
     delete area;
     delete entireLayout;
+    delete centralWidget;
     delete ui;
-}
-
-void MainWindow::addImage() {
-    // GridWidget contains the gridLayout which contains a grid of images
-    gridWidget = new QWidget();
-    gridLayout = new QGridLayout;
-    gridWidget->setLayout(gridLayout);
-
-    // Area is the ScrollArea, again self-explanatory
-    area = new QScrollArea();
-    area->setBackgroundRole(QPalette::Dark);
-    // image hight and width
-    const int w = 150;
-    const int h = 150;
-
-    // I want to display 100 pictures
-    const int number = 100;
-    // Every row I want to display 10 pictures
-    const int row = 10;
-
-    // double for loop, treat the image grid like a matric
-    // for every row, display each column in the current row
-    for (int k = 0; k < (number/row); k++) {
-        for (int j = 1; j < row; j++) {
-            QLabel* imageLabel = new QLabel();
-            QPixmap* imageMap = new QPixmap("/Users/richardyu/Pictures/conduct.png");
-            imageLabel->setPixmap(imageMap->scaled(w,h,Qt::KeepAspectRatio));
-            gridLayout->addWidget(imageLabel,j,k);
-        }
-    }
-    area->setWidget(gridWidget);
-    entireLayout->addWidget(area);
 }
 
 void MainWindow::on_hideImage_released()
 {
+    clearImage();
+}
+
+void MainWindow::clearImage() {
+    delete []imageMap;
+    imageMap = NULL;
+    delete []imageLabel;
+    imageLabel = NULL;
     delete gridLayout;
     gridLayout = NULL;
     delete gridWidget;
     gridWidget = NULL;
     delete area;
     area = NULL;
-    //delete gridLayout;
-    //gridLayout = NULL;
 }
 
-void MainWindow::on_showImage_released()
-{
-    if (gridWidget != NULL || area != NULL) {
-        return;
-    }
+void MainWindow::addImage() {
     gridLayout = new QGridLayout();
     gridWidget = new QWidget();
     gridWidget->setLayout(gridLayout);
@@ -120,23 +97,32 @@ void MainWindow::on_showImage_released()
     const int w = 150;
     const int h = 150;
 
-    // I want to display 100 pictures
-    const int number = 100;
-    // Every row I want to display 10 pictures
-    const int row = 10;
+    // I want to display 100 rows of pictures
+    // each row contains 8 column;
+    const int rows = 100;
+    const int columns = 8;
+
+    imageLabel = new QLabel*[rows * columns];
+    imageMap = new QPixmap*[rows * columns];
 
     // double for loop, treat the image grid like a matric
     // for every row, display each column in the current row
-    for (int k = 0; k < (number/row); k++) {
-        for (int j = 1; j < row; j++) {
-            QLabel* imageLabel = new QLabel();
-            QPixmap* imageMap = new QPixmap("/Users/richardyu/Pictures/conduct.png");
-            imageLabel->setPixmap(imageMap->scaled(w,h,Qt::KeepAspectRatio));
-            gridLayout->addWidget(imageLabel,j,k);
+    for (int k = 0; k < rows; k++) {
+        for (int j = 0; j < columns; j++) {
+            auto int index = k*columns + j;
+            imageLabel[index] = new QLabel();
+            imageMap[index] = new QPixmap("/Users/richardyu/Pictures/conduct.png");
+            imageLabel[index]->setPixmap(imageMap[index] ->scaled(w,h,Qt::KeepAspectRatio));
+            gridLayout->addWidget(imageLabel[index],k,j);
         }
     }
 
     area->setWidget(gridWidget);
     entireLayout->addWidget(area);
+}
 
+void MainWindow::on_showImage_released()
+{
+    clearImage();
+    addImage();
 }
