@@ -54,6 +54,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
+    delete gridLayout;
+    delete gridWidget;
+    delete area;
+    delete entireLayout;
     delete ui;
 }
 
