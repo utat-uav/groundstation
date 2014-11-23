@@ -29,14 +29,14 @@ MainWindow::MainWindow(QWidget *parent) :
     const int h = 150;
 
     // I want to display 100 rows of pictures
-    // each row contains 8 column;
+    // each row contains 8 columns;
     const int rows = 100;
     const int columns = 8;
 
     imageLabel = new QLabel*[rows * columns];
     imageMap = new QPixmap*[rows * columns];
 
-    // double for loop, treat the image grid like a matric
+    // double for loop, treat the image grid like a matrix
     // for every row, display each column in the current row
     for (int k = 0; k < rows; k++) {
         for (int j = 0; j < columns; j++) {
@@ -98,14 +98,14 @@ void MainWindow::addImage() {
     const int h = 150;
 
     // I want to display 100 rows of pictures
-    // each row contains 8 column;
+    // each row contains 8 columns;
     const int rows = 100;
     const int columns = 8;
 
     imageLabel = new QLabel*[rows * columns];
     imageMap = new QPixmap*[rows * columns];
 
-    // double for loop, treat the image grid like a matric
+    // double for loop, treat the image grid like a matrix
     // for every row, display each column in the current row
     for (int k = 0; k < rows; k++) {
         for (int j = 0; j < columns; j++) {
