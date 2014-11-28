@@ -15,12 +15,45 @@
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLabel" name="imageLabel">
+       <property name="minimumSize">
+        <size>
+         <width>85</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Preview Image</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="fileInput"/>
+     </item>
+     <item>
+      <widget class="QToolButton" name="toolButton">
+       <property name="text">
+        <string>Browse</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
     <layout class="QHBoxLayout" name="nameContainer">
      <item>
       <widget class="QLabel" name="nameLabel">
        <property name="minimumSize">
         <size>
-         <width>70</width>
+         <width>85</width>
          <height>0</height>
         </size>
        </property>
@@ -36,33 +69,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="textInput"/>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="descriptionContainer">
-     <item>
-      <widget class="QLabel" name="descriptionLabel">
-       <property name="minimumSize">
-        <size>
-         <width>70</width>
-         <height>0</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <weight>75</weight>
-         <bold>true</bold>
-        </font>
-       </property>
-       <property name="text">
-        <string>Description</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QTextEdit" name="descriptionInput"/>
+      <widget class="QLineEdit" name="nameInput"/>
      </item>
     </layout>
    </item>
@@ -72,7 +79,7 @@
       <widget class="QLabel" name="coordinateLabel">
        <property name="minimumSize">
         <size>
-         <width>70</width>
+         <width>85</width>
          <height>0</height>
         </size>
        </property>
@@ -93,12 +100,38 @@
     </layout>
    </item>
    <item>
+    <layout class="QHBoxLayout" name="descriptionContainer">
+     <item>
+      <widget class="QLabel" name="descriptionLabel">
+       <property name="minimumSize">
+        <size>
+         <width>85</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
+       <property name="text">
+        <string>Description</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QTextEdit" name="descriptionInput"/>
+     </item>
+    </layout>
+   </item>
+   <item>
     <layout class="QHBoxLayout" name="categoryContainer">
      <item>
       <widget class="QLabel" name="categoryLabel">
        <property name="minimumSize">
         <size>
-         <width>70</width>
+         <width>85</width>
          <height>0</height>
         </size>
        </property>

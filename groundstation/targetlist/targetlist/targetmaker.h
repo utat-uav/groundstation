@@ -14,6 +14,23 @@ class TargetMaker : public QDialog
 public:
     explicit TargetMaker(QWidget *parent = 0);
     ~TargetMaker();
+    bool accepted = false;
+    QString defaultNameInput = "";
+    QString defaultCoordInput = "";
+    QString defaultDescInput = "";
+    QString defaultFileInput = "";
+    QString getName();
+    QString getDesc();
+    QString getCoord();
+    QString getImageFilePath();
+    void setDefaultInputs();
+
+private slots:
+    void on_buttonBox_accepted();
+
+    void on_buttonBox_rejected();
+
+    void on_toolButton_clicked();
 
 private:
     Ui::TargetMaker *ui;

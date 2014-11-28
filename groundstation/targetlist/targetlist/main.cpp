@@ -7,7 +7,7 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
 
     MainWindow w;
-    w.resize(600, 500);
+    w.resize(200, 500);
     w.show();
     w.setWindowTitle(
              QApplication::translate("toplevel", "Target List"));

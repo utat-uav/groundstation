@@ -35,8 +35,9 @@ public:
     QCommandLinkButton *newItem;
     QCommandLinkButton *edit;
     QCommandLinkButton *deleteButton;
-    QCommandLinkButton *commandLinkButton_4;
-    QTableWidget *targetList;
+    QCommandLinkButton *upButton;
+    QCommandLinkButton *downButton;
+    QTableWidget *targetListTable;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
@@ -44,7 +45,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(692, 442);
+        MainWindow->resize(880, 500);
         MainWindow->setUnifiedTitleAndToolBarOnMac(false);
         actionExport = new QAction(MainWindow);
         actionExport->setObjectName(QStringLiteral("actionExport"));
@@ -55,56 +56,89 @@ public:
         verticalLayout->setContentsMargins(11, 11, 11, 11);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         horizontalLayout_4 = new QHBoxLayout();
-        horizontalLayout_4->setSpacing(6);
+        horizontalLayout_4->setSpacing(0);
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
         newItem = new QCommandLinkButton(centralWidget);
         newItem->setObjectName(QStringLiteral("newItem"));
+        QIcon icon;
+        icon.addFile(QStringLiteral(":/files/round75.png"), QSize(), QIcon::Normal, QIcon::Off);
+        newItem->setIcon(icon);
+        newItem->setIconSize(QSize(30, 30));
 
         horizontalLayout_4->addWidget(newItem);
 
         edit = new QCommandLinkButton(centralWidget);
         edit->setObjectName(QStringLiteral("edit"));
+        QIcon icon1;
+        icon1.addFile(QStringLiteral(":/files/clasic.png"), QSize(), QIcon::Normal, QIcon::Off);
+        edit->setIcon(icon1);
+        edit->setIconSize(QSize(30, 40));
 
         horizontalLayout_4->addWidget(edit);
 
         deleteButton = new QCommandLinkButton(centralWidget);
         deleteButton->setObjectName(QStringLiteral("deleteButton"));
+        QIcon icon2;
+        icon2.addFile(QStringLiteral(":/files/delete85.png"), QSize(), QIcon::Normal, QIcon::Off);
+        deleteButton->setIcon(icon2);
+        deleteButton->setIconSize(QSize(30, 30));
 
         horizontalLayout_4->addWidget(deleteButton);
 
-        commandLinkButton_4 = new QCommandLinkButton(centralWidget);
-        commandLinkButton_4->setObjectName(QStringLiteral("commandLinkButton_4"));
+        upButton = new QCommandLinkButton(centralWidget);
+        upButton->setObjectName(QStringLiteral("upButton"));
+        QIcon icon3;
+        icon3.addFile(QStringLiteral(":/files/up.png"), QSize(), QIcon::Normal, QIcon::Off);
+        upButton->setIcon(icon3);
+        upButton->setIconSize(QSize(30, 30));
 
-        horizontalLayout_4->addWidget(commandLinkButton_4);
+        horizontalLayout_4->addWidget(upButton);
+
+        downButton = new QCommandLinkButton(centralWidget);
+        downButton->setObjectName(QStringLiteral("downButton"));
+        QIcon icon4;
+        icon4.addFile(QStringLiteral(":/files/down.png"), QSize(), QIcon::Normal, QIcon::Off);
+        downButton->setIcon(icon4);
+        downButton->setIconSize(QSize(30, 30));
+
+        horizontalLayout_4->addWidget(downButton);
 
 
         verticalLayout->addLayout(horizontalLayout_4);
 
-        targetList = new QTableWidget(centralWidget);
-        if (targetList->columnCount() < 5)
-            targetList->setColumnCount(5);
+        targetListTable = new QTableWidget(centralWidget);
+        if (targetListTable->columnCount() < 4)
+            targetListTable->setColumnCount(4);
         QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
-        targetList->setHorizontalHeaderItem(0, __qtablewidgetitem);
-        QTableWidgetItem *__qtablewidgetitem1 = new QTableWidgetItem();
-        targetList->setHorizontalHeaderItem(1, __qtablewidgetitem1);
-        QTableWidgetItem *__qtablewidgetitem2 = new QTableWidgetItem();
-        targetList->setHorizontalHeaderItem(2, __qtablewidgetitem2);
-        QTableWidgetItem *__qtablewidgetitem3 = new QTableWidgetItem();
-        targetList->setHorizontalHeaderItem(3, __qtablewidgetitem3);
-        QTableWidgetItem *__qtablewidgetitem4 = new QTableWidgetItem();
-        targetList->setHorizontalHeaderItem(4, __qtablewidgetitem4);
-        targetList->setObjectName(QStringLiteral("targetList"));
+        targetListTable->setHorizontalHeaderItem(0, __qtablewidgetitem);
         QFont font;
+        font.setFamily(QStringLiteral("Segoe UI"));
         font.setPointSize(11);
-        targetList->setFont(font);
-        targetList->horizontalHeader()->setCascadingSectionResizes(true);
-        targetList->horizontalHeader()->setDefaultSectionSize(120);
-        targetList->horizontalHeader()->setHighlightSections(false);
-        targetList->horizontalHeader()->setMinimumSectionSize(40);
-        targetList->horizontalHeader()->setStretchLastSection(false);
-        targetList->verticalHeader()->setStretchLastSection(false);
+        QTableWidgetItem *__qtablewidgetitem1 = new QTableWidgetItem();
+        __qtablewidgetitem1->setFont(font);
+        targetListTable->setHorizontalHeaderItem(1, __qtablewidgetitem1);
+        QTableWidgetItem *__qtablewidgetitem2 = new QTableWidgetItem();
+        __qtablewidgetitem2->setFont(font);
+        targetListTable->setHorizontalHeaderItem(2, __qtablewidgetitem2);
+        QTableWidgetItem *__qtablewidgetitem3 = new QTableWidgetItem();
+        __qtablewidgetitem3->setFont(font);
+        targetListTable->setHorizontalHeaderItem(3, __qtablewidgetitem3);
+        targetListTable->setObjectName(QStringLiteral("targetListTable"));
+        QFont font1;
+        font1.setPointSize(11);
+        targetListTable->setFont(font1);
+        targetListTable->setAlternatingRowColors(false);
+        targetListTable->setSelectionMode(QAbstractItemView::ExtendedSelection);
+        targetListTable->setSelectionBehavior(QAbstractItemView::SelectRows);
+        targetListTable->setIconSize(QSize(0, 0));
+        targetListTable->setSortingEnabled(false);
+        targetListTable->horizontalHeader()->setCascadingSectionResizes(false);
+        targetListTable->horizontalHeader()->setHighlightSections(false);
+        targetListTable->horizontalHeader()->setStretchLastSection(true);
+        targetListTable->verticalHeader()->setVisible(false);
+        targetListTable->verticalHeader()->setStretchLastSection(false);
 
-        verticalLayout->addWidget(targetList);
+        verticalLayout->addWidget(targetListTable);
 
         MainWindow->setCentralWidget(centralWidget);
         mainToolBar = new QToolBar(MainWindow);
@@ -123,18 +157,37 @@ public:
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
         actionExport->setText(QApplication::translate("MainWindow", "Export", 0));
+#ifndef QT_NO_TOOLTIP
+        newItem->setToolTip(QApplication::translate("MainWindow", "<html><head/><body><p>Shortcut: <span style=\" font-weight:600;\">ctrl+n</span></p></body></html>", 0));
+#endif // QT_NO_TOOLTIP
         newItem->setText(QApplication::translate("MainWindow", "New Item", 0));
+        newItem->setShortcut(QApplication::translate("MainWindow", "Ctrl+N", 0));
+#ifndef QT_NO_TOOLTIP
+        edit->setToolTip(QApplication::translate("MainWindow", "<html><head/><body><p>Shortcut: <span style=\" font-weight:600;\">ctrl+e</span></p></body></html>", 0));
+#endif // QT_NO_TOOLTIP
         edit->setText(QApplication::translate("MainWindow", "Edit", 0));
+        edit->setShortcut(QApplication::translate("MainWindow", "Ctrl+E", 0));
+#ifndef QT_NO_TOOLTIP
+        deleteButton->setToolTip(QApplication::translate("MainWindow", "<html><head/><body><p>Shortcut: <span style=\" font-weight:600;\">del</span></p></body></html>", 0));
+#endif // QT_NO_TOOLTIP
         deleteButton->setText(QApplication::translate("MainWindow", "Delete", 0));
-        commandLinkButton_4->setText(QApplication::translate("MainWindow", "CommandLinkButton", 0));
-        QTableWidgetItem *___qtablewidgetitem = targetList->horizontalHeaderItem(1);
+        deleteButton->setShortcut(QApplication::translate("MainWindow", "Del", 0));
+#ifndef QT_NO_TOOLTIP
+        upButton->setToolTip(QApplication::translate("MainWindow", "<html><head/><body><p>Shortcut: <span style=\" font-weight:600;\">Up Key</span></p></body></html>", 0));
+#endif // QT_NO_TOOLTIP
+        upButton->setText(QApplication::translate("MainWindow", "Up", 0));
+        upButton->setShortcut(QApplication::translate("MainWindow", "Up", 0));
+#ifndef QT_NO_TOOLTIP
+        downButton->setToolTip(QApplication::translate("MainWindow", "<html><head/><body><p>Shortcut: <span style=\" font-weight:600;\">Down Key</span></p></body></html>", 0));
+#endif // QT_NO_TOOLTIP
+        downButton->setText(QApplication::translate("MainWindow", "Down", 0));
+        downButton->setShortcut(QApplication::translate("MainWindow", "Down", 0));
+        QTableWidgetItem *___qtablewidgetitem = targetListTable->horizontalHeaderItem(1);
         ___qtablewidgetitem->setText(QApplication::translate("MainWindow", "Name", 0));
-        QTableWidgetItem *___qtablewidgetitem1 = targetList->horizontalHeaderItem(2);
-        ___qtablewidgetitem1->setText(QApplication::translate("MainWindow", "Description", 0));
-        QTableWidgetItem *___qtablewidgetitem2 = targetList->horizontalHeaderItem(3);
-        ___qtablewidgetitem2->setText(QApplication::translate("MainWindow", "Coordinates", 0));
-        QTableWidgetItem *___qtablewidgetitem3 = targetList->horizontalHeaderItem(4);
-        ___qtablewidgetitem3->setText(QApplication::translate("MainWindow", "Category", 0));
+        QTableWidgetItem *___qtablewidgetitem1 = targetListTable->horizontalHeaderItem(2);
+        ___qtablewidgetitem1->setText(QApplication::translate("MainWindow", "Coordinates", 0));
+        QTableWidgetItem *___qtablewidgetitem2 = targetListTable->horizontalHeaderItem(3);
+        ___qtablewidgetitem2->setText(QApplication::translate("MainWindow", "Description", 0));
     } // retranslateUi
 
 };

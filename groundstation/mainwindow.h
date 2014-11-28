@@ -2,7 +2,10 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "mainpic/mainpicwidget.h"
+#include <QResizeEvent>
 
+using namespace std;
 namespace Ui {
     class MainWindow;
 }
@@ -16,14 +19,13 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_actionOpen_triggered();
-    void on_pushButton_clicked();
 
 public slots:
-    void label_clicked(int id);
+    void resizeEvent(QResizeEvent *event);
 
 private:
     Ui::MainWindow *ui;
+    MainPicWidget* mainPic;
 };
 
 #endif // MAINWINDOW_H

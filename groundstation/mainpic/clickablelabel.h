@@ -9,7 +9,7 @@ class ClickableLabel : public QLabel
 public:
     explicit ClickableLabel(int id, QWidget *parent = 0);
     explicit ClickableLabel(QWidget *parent = 0);
-    ClickableLabel::~ClickableLabel();
+    ~ClickableLabel();
 private:
     const int id;
 signals:

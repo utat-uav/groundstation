@@ -20,6 +20,7 @@
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QTextEdit>
+#include <QtWidgets/QToolButton>
 #include <QtWidgets/QVBoxLayout>
 
 QT_BEGIN_NAMESPACE
@@ -28,15 +29,19 @@ class Ui_TargetMaker
 {
 public:
     QVBoxLayout *verticalLayout;
+    QHBoxLayout *horizontalLayout;
+    QLabel *imageLabel;
+    QLineEdit *fileInput;
+    QToolButton *toolButton;
     QHBoxLayout *nameContainer;
     QLabel *nameLabel;
-    QLineEdit *textInput;
-    QHBoxLayout *descriptionContainer;
-    QLabel *descriptionLabel;
-    QTextEdit *descriptionInput;
+    QLineEdit *nameInput;
     QHBoxLayout *coordinateContainer;
     QLabel *coordinateLabel;
     QLineEdit *coordinateInput;
+    QHBoxLayout *descriptionContainer;
+    QLabel *descriptionLabel;
+    QTextEdit *descriptionInput;
     QHBoxLayout *categoryContainer;
     QLabel *categoryLabel;
     QDialogButtonBox *buttonBox;
@@ -48,48 +53,53 @@ public:
         TargetMaker->resize(400, 250);
         verticalLayout = new QVBoxLayout(TargetMaker);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        imageLabel = new QLabel(TargetMaker);
+        imageLabel->setObjectName(QStringLiteral("imageLabel"));
+        imageLabel->setMinimumSize(QSize(85, 0));
+        QFont font;
+        font.setBold(true);
+        font.setWeight(75);
+        imageLabel->setFont(font);
+
+        horizontalLayout->addWidget(imageLabel);
+
+        fileInput = new QLineEdit(TargetMaker);
+        fileInput->setObjectName(QStringLiteral("fileInput"));
+
+        horizontalLayout->addWidget(fileInput);
+
+        toolButton = new QToolButton(TargetMaker);
+        toolButton->setObjectName(QStringLiteral("toolButton"));
+
+        horizontalLayout->addWidget(toolButton);
+
+
+        verticalLayout->addLayout(horizontalLayout);
+
         nameContainer = new QHBoxLayout();
         nameContainer->setObjectName(QStringLiteral("nameContainer"));
         nameLabel = new QLabel(TargetMaker);
         nameLabel->setObjectName(QStringLiteral("nameLabel"));
-        nameLabel->setMinimumSize(QSize(70, 0));
-        QFont font;
-        font.setBold(true);
-        font.setWeight(75);
+        nameLabel->setMinimumSize(QSize(85, 0));
         nameLabel->setFont(font);
 
         nameContainer->addWidget(nameLabel);
 
-        textInput = new QLineEdit(TargetMaker);
-        textInput->setObjectName(QStringLiteral("textInput"));
+        nameInput = new QLineEdit(TargetMaker);
+        nameInput->setObjectName(QStringLiteral("nameInput"));
 
-        nameContainer->addWidget(textInput);
+        nameContainer->addWidget(nameInput);
 
 
         verticalLayout->addLayout(nameContainer);
-
-        descriptionContainer = new QHBoxLayout();
-        descriptionContainer->setObjectName(QStringLiteral("descriptionContainer"));
-        descriptionLabel = new QLabel(TargetMaker);
-        descriptionLabel->setObjectName(QStringLiteral("descriptionLabel"));
-        descriptionLabel->setMinimumSize(QSize(70, 0));
-        descriptionLabel->setFont(font);
-
-        descriptionContainer->addWidget(descriptionLabel);
-
-        descriptionInput = new QTextEdit(TargetMaker);
-        descriptionInput->setObjectName(QStringLiteral("descriptionInput"));
-
-        descriptionContainer->addWidget(descriptionInput);
-
-
-        verticalLayout->addLayout(descriptionContainer);
 
         coordinateContainer = new QHBoxLayout();
         coordinateContainer->setObjectName(QStringLiteral("coordinateContainer"));
         coordinateLabel = new QLabel(TargetMaker);
         coordinateLabel->setObjectName(QStringLiteral("coordinateLabel"));
-        coordinateLabel->setMinimumSize(QSize(70, 0));
+        coordinateLabel->setMinimumSize(QSize(85, 0));
         coordinateLabel->setFont(font);
 
         coordinateContainer->addWidget(coordinateLabel);
@@ -102,11 +112,28 @@ public:
 
         verticalLayout->addLayout(coordinateContainer);
 
+        descriptionContainer = new QHBoxLayout();
+        descriptionContainer->setObjectName(QStringLiteral("descriptionContainer"));
+        descriptionLabel = new QLabel(TargetMaker);
+        descriptionLabel->setObjectName(QStringLiteral("descriptionLabel"));
+        descriptionLabel->setMinimumSize(QSize(85, 0));
+        descriptionLabel->setFont(font);
+
+        descriptionContainer->addWidget(descriptionLabel);
+
+        descriptionInput = new QTextEdit(TargetMaker);
+        descriptionInput->setObjectName(QStringLiteral("descriptionInput"));
+
+        descriptionContainer->addWidget(descriptionInput);
+
+
+        verticalLayout->addLayout(descriptionContainer);
+
         categoryContainer = new QHBoxLayout();
         categoryContainer->setObjectName(QStringLiteral("categoryContainer"));
         categoryLabel = new QLabel(TargetMaker);
         categoryLabel->setObjectName(QStringLiteral("categoryLabel"));
-        categoryLabel->setMinimumSize(QSize(70, 0));
+        categoryLabel->setMinimumSize(QSize(85, 0));
         categoryLabel->setFont(font);
 
         categoryContainer->addWidget(categoryLabel);
@@ -132,9 +159,11 @@ public:
     void retranslateUi(QDialog *TargetMaker)
     {
         TargetMaker->setWindowTitle(QApplication::translate("TargetMaker", "Dialog", 0));
+        imageLabel->setText(QApplication::translate("TargetMaker", "Preview Image", 0));
+        toolButton->setText(QApplication::translate("TargetMaker", "Browse", 0));
         nameLabel->setText(QApplication::translate("TargetMaker", "Name", 0));
-        descriptionLabel->setText(QApplication::translate("TargetMaker", "Description", 0));
         coordinateLabel->setText(QApplication::translate("TargetMaker", "Coordinates", 0));
+        descriptionLabel->setText(QApplication::translate("TargetMaker", "Description", 0));
         categoryLabel->setText(QApplication::translate("TargetMaker", "Category", 0));
     } // retranslateUi
 
