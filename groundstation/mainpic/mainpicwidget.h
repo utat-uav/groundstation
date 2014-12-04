@@ -15,6 +15,9 @@ class MainPicWidget : public QWidget
 public:
     explicit MainPicWidget(QWidget *parent = 0);
     ~MainPicWidget();
+
+    void mainWindowResized();
+    void setPicture(QString);
 private:
     QScrollArea* scrollArea;
     MainPicDisplay* picDisplay;
@@ -22,8 +25,6 @@ signals:
 
 public slots:
     void toggleMode();
-    void mainWindowResized();
-
 };
 
 #endif // MAINPICWIDGET_H

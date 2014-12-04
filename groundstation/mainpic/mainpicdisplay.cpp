@@ -1,17 +1,17 @@
 #include "MainPicDisplay.h"
 using namespace std;
 
-MainPicDisplay::MainPicDisplay(QWidget *parent, int initWidth, int initHeight) :
+MainPicDisplay::MainPicDisplay(QWidget *parent) :
     QLabel(parent)
 {
     setScaledContents(true);
 
     width = 0;
+    aspectRatio = 0;
     maxWidth = 1000;
-    height = 0;
     maxHeight = 1000;
     setFixedWidth(width);
-    setFixedHeight(height);
+    setFixedHeight(width * aspectRatio);
 }
 
 MainPicDisplay::~MainPicDisplay(){
@@ -20,39 +20,45 @@ MainPicDisplay::~MainPicDisplay(){
 void MainPicDisplay::setMaxSize(const int& iwidth, const int& iheight){
     maxWidth = iwidth;
     maxHeight = iheight;
-
-    while (width > maxWidth || height > maxHeight){
-        zoomOut();
-    }
 }
 
 void MainPicDisplay::zoomIn(){
-    if (width < 1000 || height < 1000){
+    if (width < 1000 && width * aspectRatio < 1000){
         width = width * 1.2;
-        height = height * 1.2;
-        setFixedWidth(width);
-        setFixedHeight(height);
     }
+    setFixedWidth(width);
+    setFixedHeight(width * aspectRatio);
 }
 
 void MainPicDisplay::zoomOut(){
-    if(width > maxWidth || height > maxHeight){
+    if(width > maxWidth && width * aspectRatio > maxHeight){
         width /= 1.2;
-        height /= 1.2;
-        setFixedWidth(width);
-        setFixedHeight(height);
+    } else {
+        // Maxxed zoom out
+        if (maxHeight / maxWidth < aspectRatio){
+            width = maxHeight / aspectRatio;
+        } else {
+            width = maxWidth;
+        }
     }
+    setFixedWidth(width);
+    setFixedHeight(width * aspectRatio);
 }
 
 
 void MainPicDisplay::zoomToFit(){
-    width = maxWidth;
-    height = maxHeight;
+    if (maxHeight / maxWidth < aspectRatio){
+        width = maxHeight / aspectRatio;
+    } else {
+        width = maxWidth;
+    }
     setFixedWidth(width);
-    setFixedHeight(height);
+    setFixedHeight(width * aspectRatio);
 }
 
 void MainPicDisplay::displayPicture(QString source){
     QImage image = QImage(source);
     setPixmap(QPixmap::fromImage(image));
+    aspectRatio = image.width() / image.height();
+    zoomToFit();
 }

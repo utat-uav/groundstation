@@ -7,7 +7,7 @@ class MainPicDisplay: public QLabel
 {
     Q_OBJECT
 public:
-    explicit MainPicDisplay(QWidget *parent = 0, int = 0, int = 0);
+    explicit MainPicDisplay(QWidget *parent = 0);
     ~MainPicDisplay();
 
     void setMaxSize(const int&, const int&);
@@ -16,7 +16,9 @@ public:
 
 private:
     int width;
-    int height;
+    // Height:Width ratio
+    double aspectRatio;
+    // The dimensions of the container holding this display
     int maxWidth;
     int maxHeight;
 

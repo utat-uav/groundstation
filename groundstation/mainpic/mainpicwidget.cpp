@@ -10,10 +10,8 @@ MainPicWidget::MainPicWidget(QWidget *parent) :
     layout->addWidget(scrollArea);
 
     // The pic display area
-    picDisplay = new MainPicDisplay(this, scrollArea->width(), scrollArea->height());
+    picDisplay = new MainPicDisplay(this);
     scrollArea->setWidget(picDisplay);
-    // Change display pic and stuff
-    picDisplay->displayPicture("C:/Users/wesley/Dropbox/Fun Stuff/580.jpg");
 
     QWidget *sideBar = new QWidget();
     QVBoxLayout *sideBarLayout = new QVBoxLayout();
@@ -58,8 +56,6 @@ MainPicWidget::MainPicWidget(QWidget *parent) :
     targetTable->setItem(1, 0, new QTableWidgetItem("House"));
     targetTable->setItem(1, 1, new QTableWidgetItem("(545, 323)"));
 
-    // Zoom the mainPicWidget to fit
-    mainWindowResized();
 }
 
 MainPicWidget::~MainPicWidget(){
@@ -74,3 +70,7 @@ void MainPicWidget::mainWindowResized(){
     picDisplay->setMaxSize(scrollArea->width() - 2, scrollArea->height() - 2);
 }
 
+void MainPicWidget::setPicture(QString picturePath){
+    // Change display pic
+    picDisplay->displayPicture(picturePath);
+}
