@@ -6,6 +6,8 @@ TargetListItem::TargetListItem(QTableWidgetItem *i, QTableWidgetItem *n, QTableW
     name = n;
     coord = c;
     desc = d;
+
+    imageFilePath = "";
 }
 
 TargetListItem::~TargetListItem()

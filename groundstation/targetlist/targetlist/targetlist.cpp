@@ -8,6 +8,9 @@
 TargetList::TargetList(QTableWidget *targetListTable)
 {
     table = targetListTable;
+
+    rows = new QList<TargetListItem*>;
+    defaultImagePath = ":/files/Untitled.png";
 }
 
 

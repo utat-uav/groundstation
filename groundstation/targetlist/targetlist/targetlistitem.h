@@ -8,7 +8,7 @@ class TargetListItem
 {
 public:
     TargetListItem(QTableWidgetItem *i, QTableWidgetItem *n, QTableWidgetItem *c, QTableWidgetItem *d);
-    QString imageFilePath = "";
+    QString imageFilePath; //= "";
     QTableWidgetItem *image;
     QTableWidgetItem *name;
     QTableWidgetItem *coord;

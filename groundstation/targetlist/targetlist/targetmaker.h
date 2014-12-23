@@ -14,11 +14,11 @@ class TargetMaker : public QDialog
 public:
     explicit TargetMaker(QWidget *parent = 0);
     ~TargetMaker();
-    bool accepted = false;
-    QString defaultNameInput = "";
-    QString defaultCoordInput = "";
-    QString defaultDescInput = "";
-    QString defaultFileInput = "";
+    bool accepted; // = false;
+    QString defaultNameInput; // = "";
+    QString defaultCoordInput; // = "";
+    QString defaultDescInput; // = "";
+    QString defaultFileInput; // = "";
     QString getName();
     QString getDesc();
     QString getCoord();

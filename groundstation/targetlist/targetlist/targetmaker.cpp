@@ -9,6 +9,12 @@ TargetMaker::TargetMaker(QWidget *parent) :
     ui(new Ui::TargetMaker)
 {
     ui->setupUi(this);
+
+    accepted = false;
+    defaultNameInput = "";
+    defaultCoordInput = "";
+    defaultDescInput = "";
+    defaultFileInput = "";
 }
 
 TargetMaker::~TargetMaker()
