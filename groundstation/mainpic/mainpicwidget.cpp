@@ -1,5 +1,5 @@
 #include "mainpicwidget.h"
-
+;
 MainPicWidget::MainPicWidget(QWidget *parent) :
     QWidget(parent)
 {
@@ -10,8 +10,9 @@ MainPicWidget::MainPicWidget(QWidget *parent) :
     layout->addWidget(scrollArea);
 
     // The pic display area
-    picDisplay = new MainPicDisplay(this);
+    picDisplay = new MainPicDisplay(&targets, this);
     scrollArea->setWidget(picDisplay);
+    QObject::connect(picDisplay, SIGNAL(clicked(QMouseEvent*)), this, SLOT(onPictureClicked(QMouseEvent*)));
 
     QWidget *sideBar = new QWidget();
     QVBoxLayout *sideBarLayout = new QVBoxLayout();
@@ -41,21 +42,14 @@ MainPicWidget::MainPicWidget(QWidget *parent) :
     cpLayout->addWidget(toggleMode, 2, 2);
 
     // Target Table
-    QTableWidget *targetTable = new QTableWidget();
+    targetTable = new QTableWidget();
     cpLayout->addWidget(targetTable, 3, 1);
-    targetTable->setColumnCount(2);
+    targetTable->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    targetTable->setColumnCount(4);
     QStringList tableHeader;
-    tableHeader<<"Target"<<"Position";
+    tableHeader<<"Target"<<"X"<<"Y"<<"Colour";
     targetTable->setHorizontalHeaderLabels(tableHeader);
     sideBarLayout->addWidget(targetTable);
-
-    // Insert some dummy data into the table
-    targetTable->setRowCount(2);
-    targetTable->setItem(0, 0, new QTableWidgetItem("Pool"));
-    targetTable->setItem(0, 1, new QTableWidgetItem("(231, 483)"));
-    targetTable->setItem(1, 0, new QTableWidgetItem("House"));
-    targetTable->setItem(1, 1, new QTableWidgetItem("(545, 323)"));
-
 }
 
 MainPicWidget::~MainPicWidget(){
@@ -73,4 +67,23 @@ void MainPicWidget::mainWindowResized(){
 void MainPicWidget::setPicture(QString picturePath){
     // Change display pic
     picDisplay->displayPicture(picturePath);
+}
+
+
+void MainPicWidget::onPictureClicked(QMouseEvent* event){
+    addTarget("Unnamed", event->x(), event->y());
+}
+
+void MainPicWidget::addTarget(const QString& name, const int& x, const int& y){
+    // Add to list
+    targets.append(Target(name, x, y));
+    // Draw dot
+    picDisplay->update();
+    // Add to table
+    int row = targetTable->rowCount();
+    targetTable->insertRow(row);
+    targetTable->setItem(row, 0, new QTableWidgetItem(name));
+    targetTable->setItem(row, 1, new QTableWidgetItem(QString::number(x)));
+    targetTable->setItem(row, 2, new QTableWidgetItem(QString::number(y)));
+    targetTable->setItem(row, 3, new QTableWidgetItem("Blue"));
 }
