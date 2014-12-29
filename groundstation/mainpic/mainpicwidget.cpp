@@ -1,5 +1,5 @@
 #include "mainpicwidget.h"
-;
+
 MainPicWidget::MainPicWidget(QWidget *parent) :
     QWidget(parent)
 {
@@ -65,8 +65,25 @@ void MainPicWidget::mainWindowResized(){
 }
 
 void MainPicWidget::setPicture(QString picturePath){
+    currentPicture = picturePath;
+
+    // Load the targets
+    try{
+        targets = targetFileHandler.readFile(currentPicture + TargetFileHandler::fileExtension);
+    }catch(TargetFileHandler::FileReadException e){
+        qDebug() << e.what();
+        // TODO actual error handling
+    }
     // Change display pic
-    picDisplay->displayPicture(picturePath);
+    picDisplay->displayPicture(currentPicture);
+    // Add targets to table
+    for (int row = 0; row < targets.size(); row++){
+        targetTable->insertRow(row);
+        targetTable->setItem(row, 0, new QTableWidgetItem(targets[row].name));
+        targetTable->setItem(row, 1, new QTableWidgetItem(QString::number(targets[row].x)));
+        targetTable->setItem(row, 2, new QTableWidgetItem(QString::number(targets[row].y)));
+        targetTable->setItem(row, 3, new QTableWidgetItem("Placeholder"));
+    }
 }
 
 
@@ -85,5 +102,13 @@ void MainPicWidget::addTarget(const QString& name, const int& x, const int& y){
     targetTable->setItem(row, 0, new QTableWidgetItem(name));
     targetTable->setItem(row, 1, new QTableWidgetItem(QString::number(x)));
     targetTable->setItem(row, 2, new QTableWidgetItem(QString::number(y)));
-    targetTable->setItem(row, 3, new QTableWidgetItem("Blue"));
+    targetTable->setItem(row, 3, new QTableWidgetItem("Placeholder"));
+
+    // Save the new targets into the file
+    try{
+        targetFileHandler.saveFile(targets, currentPicture + TargetFileHandler::fileExtension);
+    }catch(TargetFileHandler::FileWriteException e){
+        qDebug() <<  e.what();
+        // TODO actual error handling
+    }
 }

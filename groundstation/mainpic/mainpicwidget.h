@@ -10,9 +10,11 @@
 #include <QVector>
 #include <QString>
 #include <QHeaderView>
+#include <QDebug>
 
 #include "mainpicdisplay.h"
 #include "target.h"
+#include "targetfilehandler.h"
 
 class MainPicWidget : public QWidget
 {
@@ -27,9 +29,12 @@ public:
     void setPicture(QString);
     void addTarget(const QString& name, const int& x, const int& y);
 private:
+    QString currentPicture;
+
     QScrollArea* scrollArea;
     MainPicDisplay* picDisplay;
-    QTableWidget *targetTable;
+    QTableWidget* targetTable;
+    TargetFileHandler targetFileHandler;
 signals:
 
 public slots:
