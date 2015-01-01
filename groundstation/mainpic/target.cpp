@@ -46,7 +46,11 @@ QTextStream& operator>>(QTextStream& strm, Target &t){
 }
 
 QVariant& Target::operator[](const QString& fieldName){
-    return fields[fieldName];
+    if (FIELD_NAMES.contains(fieldName)){
+        return fields[fieldName];
+    }
+    // Error!
+    throw std::out_of_range((QString(fieldName) + " is not a valid field for Target.").toStdString());
 }
 
 const QVariant& Target::operator[](const QString& fieldName) const{

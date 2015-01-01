@@ -75,9 +75,6 @@ void MainPicDisplay::paintEvent(QPaintEvent *event){
     // Fill
     painter.setBrush(Qt::blue);
 
-    painter.setFont(QFont("Arial", 30));
-    painter.drawText(rect(), Qt::AlignCenter, "Qt");
-
     // Draw all targets
     for (int i = 0; i < targets->size(); i++){
         const Target& t = targets->at(i);
