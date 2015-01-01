@@ -2,11 +2,10 @@
 #define TARGET_H
 
 #include <QTextStream>
-#include <QVector>
-#include <QString>
-#include <QStringList>
-#include <QMap>
 #include <QList>
+#include <QString>
+#include <QMap>
+#include <QVariant>
 
 using namespace std;
 
@@ -14,20 +13,19 @@ class Target
 {
 public:
     static const QString SER_SEP;
-    static const QVector<QString> FIELD_NAMES;
+    static const QList<QString> FIELD_NAMES;
 
-public:
-    QString name;
-    int x;
-    int y;
+private:
+    QMap<QString, QVariant> fields;
 
 public:
     Target();
-    Target(const QString& iname, const int& ix, const int& iy);
+    Target(const QMap<QString, QVariant>& init);
+    Target(const QList<QVariant>& init);
     virtual ~Target();
 
-    QString getFieldByNumber(const int& fieldID);
-    void setFieldByNumber(const int& fieldID, const QString& value);
+    QVariant& operator[](const QString& fieldName);
+    const QVariant& operator[](const QString& fieldName) const;
 
 private:
     friend QTextStream& operator<<(QTextStream&, const Target &);

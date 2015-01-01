@@ -24,10 +24,6 @@ public:
     ~MainPicWidget();
 
     QVector<Target> targets;
-
-    void mainWindowResized();
-    void setPicture(QString);
-    void addTarget(const QString& name, const int& x, const int& y);
 private:
     QString currentPicture;
 
@@ -35,6 +31,14 @@ private:
     MainPicDisplay* picDisplay;
     QTableWidget* targetTable;
     TargetFileHandler targetFileHandler;
+
+public:
+    void mainWindowResized();
+    void setPicture(QString);
+    void addTarget(QMap<QString, QVariant>);
+private:
+    void addTargetToTable(const Target& target);
+
 signals:
 
 public slots:

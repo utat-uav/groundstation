@@ -81,6 +81,6 @@ void MainPicDisplay::paintEvent(QPaintEvent *event){
     // Draw all targets
     for (int i = 0; i < targets->size(); i++){
         const Target& t = targets->at(i);
-        painter.drawEllipse(t.x - TARGET_DRAW_SIZE/2, t.y - TARGET_DRAW_SIZE/2, TARGET_DRAW_SIZE, TARGET_DRAW_SIZE);
+        painter.drawEllipse(t["x"].toInt() - TARGET_DRAW_SIZE/2, t["y"].toInt() - TARGET_DRAW_SIZE/2, TARGET_DRAW_SIZE, TARGET_DRAW_SIZE);
     }
 }

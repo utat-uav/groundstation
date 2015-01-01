@@ -4,32 +4,51 @@
 // Init the serialization seperator character(s)
 const QString Target::SER_SEP = "\t";
 // Init the field names
-const QVector<QString> Target::FIELD_NAMES = QVector<QString>() << "Name" << "x" << "y";
+const QList<QString> Target::FIELD_NAMES = QList<QString>() << "Name" << "x" << "y";
 
 Target::Target(){
 }
 
-Target::Target(const QString& iname, const int& ix, const int& iy){
-    name = iname;
-    x = ix;
-    y = iy;
+Target::Target(const QMap<QString, QVariant>& init){
+    // TODO Do some error checking
+    fields = init;
+}
+
+Target::Target(const QList<QVariant>& init){
+    // TODO Do some error checking
+    for (int i = 0; i < FIELD_NAMES.size(); i++){
+        fields[FIELD_NAMES[i]] = init[i];
+    }
 }
 
 Target::~Target(){
 }
 
 QTextStream& operator<<(QTextStream&strm, const Target &t) {
-    return strm << t.name << Target::SER_SEP << t.x << Target::SER_SEP << t.y;
+    foreach(QString fieldName, Target::FIELD_NAMES){
+        strm << (t[fieldName]).toString() << Target::SER_SEP;
+    }
+    return strm;
 }
 
 QTextStream& operator>>(QTextStream& strm, Target &t){
+    // Read the line into a QList<QVariant>
     QString s = strm.readLine();
-    QStringList sl = s.split(Target::SER_SEP);
-    // Decode the string
-    QString name = sl[0];
-    int x = sl[1].toInt();
-    int y = sl[2].toInt();
+    QList<QString> sl = s.split(Target::SER_SEP);
+    QList<QVariant> vl;
+    foreach (QString s, sl){
+        vl.append(s);
+    }
+
     // Make the object
-    t = Target(name, x, y);
+    t = Target(vl);
     return strm;
+}
+
+QVariant& Target::operator[](const QString& fieldName){
+    return fields[fieldName];
+}
+
+const QVariant& Target::operator[](const QString& fieldName) const{
+    return const_cast<Target&>(*this)[fieldName];
 }

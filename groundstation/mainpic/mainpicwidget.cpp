@@ -46,10 +46,8 @@ MainPicWidget::MainPicWidget(QWidget *parent) :
     cpLayout->addWidget(targetTable, 3, 1);
     connect(targetTable, SIGNAL(cellChanged(int,int)), this, SLOT(onTargetTableChanged(int,int)));
     targetTable->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
-    targetTable->setColumnCount(4);
-    QStringList tableHeader;
-    tableHeader<<"Target"<<"X"<<"Y"<<"Colour";
-    targetTable->setHorizontalHeaderLabels(tableHeader);
+    targetTable->setColumnCount(Target::FIELD_NAMES.size());
+    targetTable->setHorizontalHeaderLabels(Target::FIELD_NAMES);
     sideBarLayout->addWidget(targetTable);
 }
 
@@ -75,21 +73,20 @@ void MainPicWidget::setPicture(QString picturePath){
         qDebug() << e.what();
         // TODO actual error handling
     }
-    // Change display pic
+    // Change display pic - this updates so targets will draw too
     picDisplay->displayPicture(currentPicture);
     // Add targets to table
     for (int row = 0; row < targets.size(); row++){
-        targetTable->insertRow(row);
-        targetTable->setItem(row, 0, new QTableWidgetItem(targets[row].name));
-        targetTable->setItem(row, 1, new QTableWidgetItem(QString::number(targets[row].x)));
-        targetTable->setItem(row, 2, new QTableWidgetItem(QString::number(targets[row].y)));
-        targetTable->setItem(row, 3, new QTableWidgetItem("Placeholder"));
+        addTargetToTable(targets[row]);
     }
 }
 
 
 void MainPicWidget::onPictureClicked(QMouseEvent* event){
-    addTarget("Unnamed", event->x(), event->y());
+    std::map<QString, QVariant> map = std::map<QString, QVariant>();
+    map[QString("x")] = event->x();
+    map[QString("y")] = event->y();
+    addTarget(QMap<QString, QVariant>(map));
     // Try to save the new targets into the file
     try{
         targetFileHandler.saveFile(targets, currentPicture + TargetFileHandler::fileExtension);
@@ -100,22 +97,8 @@ void MainPicWidget::onPictureClicked(QMouseEvent* event){
 }
 
 void MainPicWidget::onTargetTableChanged(int row, int column){
-    // Update the table
-    switch(column){
-    case 0:
-        targets[row].name = targetTable->item(row, column)->text();
-        break;
-    case 1:
-        targets[row].x = targetTable->item(row, column)->text().toInt();
-        break;
-    case 2:
-        targets[row].y = targetTable->item(row,column)->text().toInt();
-        break;
-    default:
-        qDebug() << QString("Exception in onTargetTableChanged(") + QString::number(row) + ", " + QString::number(column) + ").";
-        return;
-    }
-    // Save
+    // Update the data structure from the table
+    targets[row][Target::FIELD_NAMES[column]] = targetTable->item(row, column)->text();
     // Try to save the new targets into the file
     try{
         targetFileHandler.saveFile(targets, currentPicture + TargetFileHandler::fileExtension);
@@ -125,16 +108,19 @@ void MainPicWidget::onTargetTableChanged(int row, int column){
     }
 }
 
-void MainPicWidget::addTarget(const QString& name, const int& x, const int& y){
-    // Add to list
-    targets.append(Target(name, x, y));
+void MainPicWidget::addTarget(QMap<QString, QVariant> init){
+    // Construct and add target to data structure
+    targets.append(Target(init));
     // Draw dot
     picDisplay->update();
     // Add to table
+    addTargetToTable(targets.back());
+}
+
+void MainPicWidget::addTargetToTable(const Target& target){
     int row = targetTable->rowCount();
     targetTable->insertRow(row);
-    targetTable->setItem(row, 0, new QTableWidgetItem(name));
-    targetTable->setItem(row, 1, new QTableWidgetItem(QString::number(x)));
-    targetTable->setItem(row, 2, new QTableWidgetItem(QString::number(y)));
-    targetTable->setItem(row, 3, new QTableWidgetItem("Placeholder"));
+    for (int column = 0; column < Target::FIELD_NAMES.size(); column++){
+        targetTable->setItem(row, column, new QTableWidgetItem(target[Target::FIELD_NAMES[column]].toString()));
+    }
 }
