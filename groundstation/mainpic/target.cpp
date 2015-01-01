@@ -1,7 +1,10 @@
 #include "target.h"
 
+// Init some static variables
 // Init the serialization seperator character(s)
 const QString Target::SER_SEP = "\t";
+// Init the field names
+const QVector<QString> Target::FIELD_NAMES = QVector<QString>() << "Name" << "x" << "y";
 
 Target::Target(){
 }

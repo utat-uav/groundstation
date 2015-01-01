@@ -40,6 +40,7 @@ signals:
 public slots:
     void toggleMode();
     void onPictureClicked(QMouseEvent* event);
+    void onTargetTableChanged(int row, int column);
 };
 
 #endif // MAINPICWIDGET_H

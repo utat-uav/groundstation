@@ -12,7 +12,7 @@ MainPicWidget::MainPicWidget(QWidget *parent) :
     // The pic display area
     picDisplay = new MainPicDisplay(&targets, this);
     scrollArea->setWidget(picDisplay);
-    QObject::connect(picDisplay, SIGNAL(clicked(QMouseEvent*)), this, SLOT(onPictureClicked(QMouseEvent*)));
+    connect(picDisplay, SIGNAL(clicked(QMouseEvent*)), this, SLOT(onPictureClicked(QMouseEvent*)));
 
     QWidget *sideBar = new QWidget();
     QVBoxLayout *sideBarLayout = new QVBoxLayout();
@@ -44,6 +44,7 @@ MainPicWidget::MainPicWidget(QWidget *parent) :
     // Target Table
     targetTable = new QTableWidget();
     cpLayout->addWidget(targetTable, 3, 1);
+    connect(targetTable, SIGNAL(cellChanged(int,int)), this, SLOT(onTargetTableChanged(int,int)));
     targetTable->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
     targetTable->setColumnCount(4);
     QStringList tableHeader;
@@ -89,6 +90,39 @@ void MainPicWidget::setPicture(QString picturePath){
 
 void MainPicWidget::onPictureClicked(QMouseEvent* event){
     addTarget("Unnamed", event->x(), event->y());
+    // Try to save the new targets into the file
+    try{
+        targetFileHandler.saveFile(targets, currentPicture + TargetFileHandler::fileExtension);
+    }catch(TargetFileHandler::FileWriteException e){
+        qDebug() <<  e.what();
+        // TODO actual error handling
+    }
+}
+
+void MainPicWidget::onTargetTableChanged(int row, int column){
+    // Update the table
+    switch(column){
+    case 0:
+        targets[row].name = targetTable->item(row, column)->text();
+        break;
+    case 1:
+        targets[row].x = targetTable->item(row, column)->text().toInt();
+        break;
+    case 2:
+        targets[row].y = targetTable->item(row,column)->text().toInt();
+        break;
+    default:
+        qDebug() << QString("Exception in onTargetTableChanged(") + QString::number(row) + ", " + QString::number(column) + ").";
+        return;
+    }
+    // Save
+    // Try to save the new targets into the file
+    try{
+        targetFileHandler.saveFile(targets, currentPicture + TargetFileHandler::fileExtension);
+    }catch(TargetFileHandler::FileWriteException e){
+        qDebug() <<  e.what();
+        // TODO actual error handling
+    }
 }
 
 void MainPicWidget::addTarget(const QString& name, const int& x, const int& y){
@@ -103,12 +137,4 @@ void MainPicWidget::addTarget(const QString& name, const int& x, const int& y){
     targetTable->setItem(row, 1, new QTableWidgetItem(QString::number(x)));
     targetTable->setItem(row, 2, new QTableWidgetItem(QString::number(y)));
     targetTable->setItem(row, 3, new QTableWidgetItem("Placeholder"));
-
-    // Save the new targets into the file
-    try{
-        targetFileHandler.saveFile(targets, currentPicture + TargetFileHandler::fileExtension);
-    }catch(TargetFileHandler::FileWriteException e){
-        qDebug() <<  e.what();
-        // TODO actual error handling
-    }
 }
