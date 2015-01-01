@@ -12,8 +12,9 @@ MainPicWidget::MainPicWidget(QWidget *parent) :
     // The pic display area
     picDisplay = new MainPicDisplay(&targets, this);
     scrollArea->setWidget(picDisplay);
-    connect(picDisplay, SIGNAL(clicked(QMouseEvent*)), this, SLOT(onPictureClicked(QMouseEvent*)));
+    connect(picDisplay, SIGNAL(clicked(int, int)), this, SLOT(onPictureClicked(int, int)));
 
+    // Create the sidebar box
     QWidget *sideBar = new QWidget();
     QVBoxLayout *sideBarLayout = new QVBoxLayout();
     sideBar->setLayout(sideBarLayout);
@@ -81,17 +82,17 @@ void MainPicWidget::setPicture(QString picturePath){
     }
 }
 
-
-void MainPicWidget::onPictureClicked(QMouseEvent* event){
+// x and y here are in terms of the unzoomed picture
+void MainPicWidget::onPictureClicked(int x, int y){
     std::map<QString, QVariant> map = std::map<QString, QVariant>();
-    map[QString("x")] = event->x();
-    map[QString("y")] = event->y();
+    map[QString("x")] = x;
+    map[QString("y")] = y;
     addTarget(QMap<QString, QVariant>(map));
     // Try to save the new targets into the file
     try{
         targetFileHandler.saveFile(targets, currentPicture + TargetFileHandler::fileExtension);
     }catch(TargetFileHandler::FileWriteException e){
-        qDebug() <<  e.what();
+        qDebug() << e.what();
         // TODO actual error handling
     }
 }
@@ -99,11 +100,13 @@ void MainPicWidget::onPictureClicked(QMouseEvent* event){
 void MainPicWidget::onTargetTableChanged(int row, int column){
     // Update the data structure from the table
     targets[row][Target::FIELD_NAMES[column]] = targetTable->item(row, column)->text();
+    // Update targets in case one has changed
+    picDisplay->update();
     // Try to save the new targets into the file
     try{
         targetFileHandler.saveFile(targets, currentPicture + TargetFileHandler::fileExtension);
     }catch(TargetFileHandler::FileWriteException e){
-        qDebug() <<  e.what();
+        qDebug() << e.what();
         // TODO actual error handling
     }
 }

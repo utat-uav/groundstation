@@ -43,7 +43,7 @@ signals:
 
 public slots:
     void toggleMode();
-    void onPictureClicked(QMouseEvent* event);
+    void onPictureClicked(int x, int y);
     void onTargetTableChanged(int row, int column);
 };
 
