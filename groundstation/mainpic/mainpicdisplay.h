@@ -12,7 +12,7 @@ class MainPicDisplay: public QLabel
 {
     Q_OBJECT
 public:
-    explicit MainPicDisplay(const QVector<Target>*, QWidget *parent = 0);
+    explicit MainPicDisplay(const QVector<Target>&, QWidget *parent = 0);
     ~MainPicDisplay();
 
     void setMaxSize(const int&, const int&);
@@ -37,7 +37,7 @@ private:
     int maxHeight;
 
     int TARGET_DRAW_SIZE;
-    const QVector<Target>* targets;
+    const QVector<Target>& targets;
 
 signals:
     void clicked(int x, int y);

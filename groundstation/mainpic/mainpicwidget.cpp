@@ -10,7 +10,7 @@ MainPicWidget::MainPicWidget(QWidget *parent) :
     layout->addWidget(scrollArea);
 
     // The pic display area
-    picDisplay = new MainPicDisplay(&targets, this);
+    picDisplay = new MainPicDisplay(targets, this);
     scrollArea->setWidget(picDisplay);
     connect(picDisplay, SIGNAL(clicked(int, int)), this, SLOT(onPictureClicked(int, int)));
 
@@ -41,6 +41,14 @@ MainPicWidget::MainPicWidget(QWidget *parent) :
     QPushButton *toggleMode = new QPushButton("Select targets");
     connect(toggleMode, SIGNAL(pressed()), this, SLOT(toggleMode()));
     cpLayout->addWidget(toggleMode, 2, 2);
+    // Enhance
+    QPushButton *enhanceButton = new QPushButton("Enhance Button");
+    connect(enhanceButton, SIGNAL(pressed()), this, SLOT(deleteTarget()));
+    cpLayout->addWidget(enhanceButton, 1, 3);
+    // delete targets pls no ocd
+    QPushButton *deleteTarget = new QPushButton("Delete target");
+    connect(deleteTarget, SIGNAL(pressed()), this, SLOT(deleteTarget()));
+    cpLayout->addWidget(deleteTarget, 2, 3);
 
     // Target Table
     targetTable = new QTableWidget();
@@ -125,5 +133,24 @@ void MainPicWidget::addTargetToTable(const Target& target){
     targetTable->insertRow(row);
     for (int column = 0; column < Target::FIELD_NAMES.size(); column++){
         targetTable->setItem(row, column, new QTableWidgetItem(target[Target::FIELD_NAMES[column]].toString()));
+    }
+}
+
+//delete targets pls no ocd
+void MainPicWidget::deleteTarget(){
+    int row = targetTable->currentRow();
+    if (row >= 0){
+        //int x = targetTable->item(row, 1)->text();
+        //int y = targetTable->item(row, 2)->text();
+        targets.removeAt(row);
+        targetTable->removeRow(row);
+        picDisplay->update();
+        // Try to save the new targets into the file
+        try{
+            targetFileHandler.saveFile(targets, currentPicture + TargetFileHandler::fileExtension);
+        }catch(TargetFileHandler::FileWriteException e){
+            qDebug() << e.what();
+            // TODO actual error handling
+        }
     }
 }

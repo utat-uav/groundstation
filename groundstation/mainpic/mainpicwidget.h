@@ -43,6 +43,7 @@ signals:
 
 public slots:
     void toggleMode();
+    void deleteTarget();
     void onPictureClicked(int x, int y);
     void onTargetTableChanged(int row, int column);
 };
