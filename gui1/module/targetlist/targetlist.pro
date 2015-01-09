@@ -12,7 +12,7 @@ TARGET = targetlist
 TEMPLATE = app
 
 
-SOURCES += main.cpp\
+SOURCES +=\
         mainwindow.cpp \
     targetmaker.cpp \
     targetlist.cpp \
