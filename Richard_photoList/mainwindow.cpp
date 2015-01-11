@@ -25,40 +25,82 @@ MainWindow::MainWindow(QWidget *parent) :
     centralWidget->setLayout(entireLayout);
 
     // image hight and width
-    const int w = 150;
-    const int h = 150;
+    const int w = 300;
+    const int h = 300;
 
     // I want to display 100 rows of pictures
     // each row contains 8 columns;
     const int rows = 100;
-    const int columns = 8;
+    const int columns = 4;
+
+    dir = new QDir("/Users/richardyu/Pictures/photolist");
+    QStringList filters;
+    filters << "*png" << "*jpg" << "*JPEG" << "*.bmp";
+    dir->setNameFilters(filters);
+    QFileInfoList list = dir->entryInfoList();
+
+    long listCount = 0;
 
     imageLabel = new QLabel*[rows * columns];
     imageMap = new QPixmap*[rows * columns];
+    imageName = new QLabel*[rows * columns];
+
+    //QLabel* filename;
 
     // double for loop, treat the image grid like a matrix
     // for every row, display each column in the current row
-    for (int k = 0; k < rows; k++) {
+    for (int k = 0; k < rows; k=k+2) {
         for (int j = 0; j < columns; j++) {
+
+            // When all files in the directory are added to the screen
+            // Jump out of the loop using 'goto'
+            if (listCount == list.size()) goto jump;
+
+            // fileinfo contains the path of every image
+            QFileInfo fileinfo = list.at(listCount);
+
             auto int index = k*columns + j;
             imageLabel[index] = new QLabel();
-            imageMap[index] = new QPixmap("/Users/richardyu/Pictures/conduct.png");
-            imageLabel[index]->setPixmap(imageMap[index] ->scaled(w,h,Qt::KeepAspectRatio));
+            imageName[index] = new QLabel();
+            imageMap[index] = new QPixmap(fileinfo.absoluteFilePath());
+            imageLabel[index]->setPixmap(imageMap[index]->scaled(w,h,Qt::KeepAspectRatio));
+            //Widget* tmp(imageLabel[index]);
+            //filename = new QLabel;
+            QString temp = "<font color='red'>" + fileinfo.fileName();
+            imageName[index]->setText(temp);
+
             gridLayout->addWidget(imageLabel[index],k,j);
+            //gridLayout->addWidget(tmp,k,j);
+            gridLayout->addWidget(imageName[index],k+1,j);
+            listCount++;
         }
     }
+
+    jump: listCount = 0;
+
+
+    //QPixmap* tmpmap = new QPixmap("/Users/richardyu/Pictures/conduct.png");
+    //QLabel* tmplabel;
+    //tmplabel->setPixmap(tmpmap->scaled(w,h,Qt::KeepAspectRatioByExpanding));
+    //Widget* tmpwidget = new Widget(tmplabel);
+    //gridLayout->addWidget(tmpwidget, 0, 80);
 
     area->setWidget(gridWidget);
     entireLayout->setAlignment(Qt::AlignTop);
     entireLayout->addWidget(ui->hideImage);
     entireLayout->addWidget(ui->showImage);
+    entireLayout->addWidget(ui->deleteImage);
+    entireLayout->addWidget(ui->renameImage);
+    entireLayout->addWidget(ui->hello);
     entireLayout->addWidget(area);
 
 }
 
 MainWindow::~MainWindow()
 {
+    delete dir;
     delete []imageMap;
+    delete []imageName;
     delete []imageLabel;
     delete gridLayout;
     delete gridWidget;
@@ -67,6 +109,8 @@ MainWindow::~MainWindow()
     delete centralWidget;
     delete ui;
 }
+
+
 
 void MainWindow::on_hideImage_released()
 {
@@ -112,7 +156,7 @@ void MainWindow::addImage() {
             auto int index = k*columns + j;
             imageLabel[index] = new QLabel();
             imageMap[index] = new QPixmap("/Users/richardyu/Pictures/conduct.png");
-            imageLabel[index]->setPixmap(imageMap[index] ->scaled(w,h,Qt::KeepAspectRatio));
+            imageLabel[index]->setPixmap(imageMap[index] ->scaled(w,h,Qt::KeepAspectRatioByExpanding));
             gridLayout->addWidget(imageLabel[index],k,j);
         }
     }
@@ -125,4 +169,9 @@ void MainWindow::on_showImage_released()
 {
     clearImage();
     addImage();
+}
+
+void MainWindow::on_hello_released()
+{
+    clearImage();
 }

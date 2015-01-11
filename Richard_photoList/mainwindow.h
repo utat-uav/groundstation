@@ -11,6 +11,11 @@
 #include <QRect>
 #include <QGridLayout>
 #include <QScrollArea>
+#include <QDir>
+#include <QStringList>
+#include <QFileInfoList>
+#include <QFileInfo>
+#include "mylabel.h"
 
 namespace Ui {
 class MainWindow;
@@ -29,6 +34,8 @@ private slots:
 
     void on_showImage_released();
 
+    void on_hello_released();
+
 private:
     Ui::MainWindow *ui;
     QGridLayout* gridLayout;
@@ -37,7 +44,9 @@ private:
     QScrollArea* area;
     QVBoxLayout* entireLayout;
     QLabel** imageLabel;
+    QLabel** imageName;
     QPixmap** imageMap;
+    QDir* dir;
     void clearImage();
     void addImage();
 
