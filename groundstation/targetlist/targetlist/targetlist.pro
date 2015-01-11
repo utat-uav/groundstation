@@ -13,8 +13,18 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    targetmaker.cpp \
+    targetlist.cpp \
+    targetlistitem.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    targetmaker.h \
+    targetlist.h \
+    targetlistitem.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    targetmaker.ui
+
+RESOURCES += \
+    Resources.qrc

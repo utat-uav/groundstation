@@ -2,8 +2,10 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-#include "mainpic/mainpicwidget.h"
 #include <QResizeEvent>
+
+#include "mainpic/mainpicwidget.h"
+#include "mainpic/targetfilehandler.h"
 
 using namespace std;
 namespace Ui {

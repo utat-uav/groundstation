@@ -51,6 +51,7 @@ MainWindow::MainWindow(QWidget *parent) :
     // for every row, display each column in the current row
     for (int k = 0; k < rows; k=k+2) {
         for (int j = 0; j < columns; j++) {
+<<<<<<< HEAD
 
             // When all files in the directory are added to the screen
             // Jump out of the loop using 'goto'
@@ -60,6 +61,9 @@ MainWindow::MainWindow(QWidget *parent) :
             QFileInfo fileinfo = list.at(listCount);
 
             auto int index = k*columns + j;
+=======
+            /*auto*/ int index = k*columns + j;
+>>>>>>> FETCH_HEAD
             imageLabel[index] = new QLabel();
             imageName[index] = new QLabel();
             imageMap[index] = new QPixmap(fileinfo.absoluteFilePath());
@@ -153,7 +157,7 @@ void MainWindow::addImage() {
     // for every row, display each column in the current row
     for (int k = 0; k < rows; k++) {
         for (int j = 0; j < columns; j++) {
-            auto int index = k*columns + j;
+            /*auto*/ int index = k*columns + j;
             imageLabel[index] = new QLabel();
             imageMap[index] = new QPixmap("/Users/richardyu/Pictures/conduct.png");
             imageLabel[index]->setPixmap(imageMap[index] ->scaled(w,h,Qt::KeepAspectRatioByExpanding));
