@@ -1,16 +1,16 @@
 #include "mainwindow.h"
 #include <QApplication>
-#include <QDesktopWidget>
+#include <QtGui>
 
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
+
     MainWindow w;
-    QDesktopWidget dw;
-    int x=dw.width()*0.9;
-    int y=dw.height()*0.9;
-    w.setFixedSize(x,y);
+    w.resize(200, 500);
     w.show();
+    w.setWindowTitle(
+             QApplication::translate("toplevel", "Target List"));
 
     return a.exec();
 }
