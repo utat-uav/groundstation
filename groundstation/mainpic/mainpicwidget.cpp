@@ -44,7 +44,7 @@ MainPicWidget::MainPicWidget(QWidget *parent) :
     // Enhance
     QPushButton *enhanceButton = new QPushButton("Enhance Button");
     connect(enhanceButton, SIGNAL(pressed()), this, SLOT(deleteTarget()));
-    cpLayout->addWidget(enhanceButton, 1, 3);
+    //cpLayout->addWidget(enhanceButton, 1, 3);
     // delete targets pls no ocd
     QPushButton *deleteTarget = new QPushButton("Delete target");
     connect(deleteTarget, SIGNAL(pressed()), this, SLOT(deleteTarget()));
@@ -55,6 +55,8 @@ MainPicWidget::MainPicWidget(QWidget *parent) :
     cpLayout->addWidget(targetTable, 3, 1);
     connect(targetTable, SIGNAL(cellChanged(int,int)), this, SLOT(onTargetTableChanged(int,int)));
     targetTable->horizontalHeader()->setSectionResizeMode(QHeaderView::ResizeToContents);
+    targetTable->setSelectionBehavior(QAbstractItemView::SelectRows);
+    targetTable->setSelectionMode(QAbstractItemView::SingleSelection);
     targetTable->setColumnCount(Target::FIELD_NAMES.size());
     targetTable->setHorizontalHeaderLabels(Target::FIELD_NAMES);
     sideBarLayout->addWidget(targetTable);
