@@ -9,12 +9,18 @@ QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = gui
-TEMPLATE = app
+TEMPLATE = subdirs
+SUBDIRS += module/targetlist/targetlist.pro \
+    module/container
 
+# DEPENDPATH += module/targetlist
+# INCLUDEPATH += module/targetlist
 
-SOURCES += main.cpp\
-        mainwindow.cpp
+# include (module/targetlist/targetlist.pri)
 
-HEADERS  += mainwindow.h
+# SOURCES += main.cpp \
+#         mainwindow.cpp
 
-FORMS    += mainwindow.ui
+# HEADERS  += mainwindow.h
+
+# FORMS    += mainwindow.ui
