@@ -9,22 +9,26 @@ QT       += core gui
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = targetlist
-TEMPLATE = app
+TEMPLATE = lib
 
+CONFIG += staticlibx
 
-SOURCES += main.cpp\
-        mainwindow.cpp \
+SOURCES += main.cpp \
     targetmaker.cpp \
     targetlist.cpp \
-    targetlistitem.cpp
+    targetlistitem.cpp \
+    targlistmainwindow.cpp
 
-HEADERS  += mainwindow.h \
+HEADERS  += \
     targetmaker.h \
     targetlist.h \
-    targetlistitem.h
+    targetlistitem.h \
+    targlistmainwindow.h \
+    targlistlib_global.h
 
-FORMS    += mainwindow.ui \
-    targetmaker.ui
+FORMS    += \
+    targetmaker.ui \
+    targlistmainwindow.ui
 
 RESOURCES += \
     Resources.qrc

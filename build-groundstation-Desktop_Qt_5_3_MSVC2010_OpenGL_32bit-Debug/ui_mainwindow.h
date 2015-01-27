@@ -13,13 +13,9 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
-#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QMainWindow>
-#include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
-#include <QtWidgets/QPushButton>
-#include <QtWidgets/QScrollArea>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
@@ -31,13 +27,7 @@ class Ui_MainWindow
 public:
     QAction *actionOpen;
     QWidget *centralWidget;
-    QScrollArea *scrollArea;
-    QWidget *scrollAreaWidgetContents;
-    QWidget *gridLayoutWidget;
-    QGridLayout *scrollAreaGridLayout;
-    QPushButton *pushButton;
     QMenuBar *menuBar;
-    QMenu *menuFile;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
@@ -50,34 +40,10 @@ public:
         actionOpen->setObjectName(QStringLiteral("actionOpen"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
-        scrollArea = new QScrollArea(centralWidget);
-        scrollArea->setObjectName(QStringLiteral("scrollArea"));
-        scrollArea->setGeometry(QRect(10, 30, 631, 321));
-        scrollArea->setWidgetResizable(true);
-        scrollAreaWidgetContents = new QWidget();
-        scrollAreaWidgetContents->setObjectName(QStringLiteral("scrollAreaWidgetContents"));
-        scrollAreaWidgetContents->setGeometry(QRect(0, 0, 629, 319));
-        gridLayoutWidget = new QWidget(scrollAreaWidgetContents);
-        gridLayoutWidget->setObjectName(QStringLiteral("gridLayoutWidget"));
-        gridLayoutWidget->setGeometry(QRect(0, 0, 631, 321));
-        scrollAreaGridLayout = new QGridLayout(gridLayoutWidget);
-        scrollAreaGridLayout->setSpacing(6);
-        scrollAreaGridLayout->setContentsMargins(11, 11, 11, 11);
-        scrollAreaGridLayout->setObjectName(QStringLiteral("scrollAreaGridLayout"));
-        scrollAreaGridLayout->setSizeConstraint(QLayout::SetFixedSize);
-        scrollAreaGridLayout->setContentsMargins(0, 0, 0, 0);
-        pushButton = new QPushButton(gridLayoutWidget);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
-
-        scrollAreaGridLayout->addWidget(pushButton, 0, 0, 1, 1);
-
-        scrollArea->setWidget(scrollAreaWidgetContents);
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
         menuBar->setGeometry(QRect(0, 0, 683, 21));
-        menuFile = new QMenu(menuBar);
-        menuFile->setObjectName(QStringLiteral("menuFile"));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -85,9 +51,6 @@ public:
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName(QStringLiteral("statusBar"));
         MainWindow->setStatusBar(statusBar);
-
-        menuBar->addAction(menuFile->menuAction());
-        menuFile->addAction(actionOpen);
 
         retranslateUi(MainWindow);
 
@@ -98,8 +61,6 @@ public:
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
         actionOpen->setText(QApplication::translate("MainWindow", "Open", 0));
-        pushButton->setText(QApplication::translate("MainWindow", "Button", 0));
-        menuFile->setTitle(QApplication::translate("MainWindow", "File", 0));
     } // retranslateUi
 
 };

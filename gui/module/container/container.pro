@@ -11,10 +11,20 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = container
 TEMPLATE = app
 
+DEFINES += TARGLISTLIB
 
-SOURCES += main.cpp\
-        mainwindow.cpp
+SOURCES += main.cpp \
+    mainwindow.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += \
+    mainwindow.h
+
 
 FORMS    += mainwindow.ui
+
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../targetlist/release/ -ltargetlist
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../targetlist/debug/ -ltargetlist
+else:unix: LIBS += -L$$OUT_PWD/../targetlist/ -ltargetlist
+
+INCLUDEPATH += $$PWD/../targetlist
+DEPENDPATH += $$PWD/../targetlist

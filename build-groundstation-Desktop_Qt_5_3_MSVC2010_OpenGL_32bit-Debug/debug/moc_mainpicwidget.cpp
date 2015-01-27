@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_MainPicWidget_t {
-    QByteArrayData data[4];
-    char stringdata[44];
+    QByteArrayData data[10];
+    char stringdata[92];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -32,9 +32,17 @@ static const qt_meta_stringdata_MainPicWidget_t qt_meta_stringdata_MainPicWidget
 QT_MOC_LITERAL(0, 0, 13),
 QT_MOC_LITERAL(1, 14, 10),
 QT_MOC_LITERAL(2, 25, 0),
-QT_MOC_LITERAL(3, 26, 17)
+QT_MOC_LITERAL(3, 26, 12),
+QT_MOC_LITERAL(4, 39, 16),
+QT_MOC_LITERAL(5, 56, 1),
+QT_MOC_LITERAL(6, 58, 1),
+QT_MOC_LITERAL(7, 60, 20),
+QT_MOC_LITERAL(8, 81, 3),
+QT_MOC_LITERAL(9, 85, 6)
     },
-    "MainPicWidget\0toggleMode\0\0mainWindowResized"
+    "MainPicWidget\0toggleMode\0\0deleteTarget\0"
+    "onPictureClicked\0x\0y\0onTargetTableChanged\0"
+    "row\0column"
 };
 #undef QT_MOC_LITERAL
 
@@ -44,7 +52,7 @@ static const uint qt_meta_data_MainPicWidget[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       2,   14, // methods
+       4,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -52,12 +60,16 @@ static const uint qt_meta_data_MainPicWidget[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   24,    2, 0x0a /* Public */,
-       3,    0,   25,    2, 0x0a /* Public */,
+       1,    0,   34,    2, 0x0a /* Public */,
+       3,    0,   35,    2, 0x0a /* Public */,
+       4,    2,   36,    2, 0x0a /* Public */,
+       7,    2,   41,    2, 0x0a /* Public */,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void, QMetaType::Int, QMetaType::Int,    5,    6,
+    QMetaType::Void, QMetaType::Int, QMetaType::Int,    8,    9,
 
        0        // eod
 };
@@ -68,11 +80,12 @@ void MainPicWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _i
         MainPicWidget *_t = static_cast<MainPicWidget *>(_o);
         switch (_id) {
         case 0: _t->toggleMode(); break;
-        case 1: _t->mainWindowResized(); break;
+        case 1: _t->deleteTarget(); break;
+        case 2: _t->onPictureClicked((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
+        case 3: _t->onTargetTableChanged((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2]))); break;
         default: ;
         }
     }
-    Q_UNUSED(_a);
 }
 
 const QMetaObject MainPicWidget::staticMetaObject = {
@@ -100,13 +113,13 @@ int MainPicWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 2)
+        if (_id < 4)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 4;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 2)
+        if (_id < 4)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 2;
+        _id -= 4;
     }
     return _id;
 }

@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+#include "targlistmainwindow.h"
 #include <QApplication>
 #include <QtGui>
 
@@ -8,7 +8,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
-    MainWindow w;
+    TargListMainWindow w;
     w.resize(200, 500);
     w.show();
     w.setWindowTitle(
