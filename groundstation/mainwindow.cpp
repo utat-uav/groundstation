@@ -8,18 +8,23 @@ MainWindow::MainWindow(QWidget *parent) :
 {
         ui->setupUi(this);
 
-        mainPic = new MainPicWidget();
-        setCentralWidget(mainPic);
+        tabWindow = new QTabWidget;
+        setCentralWidget(tabWindow);
 
-        mainPic->setPicture("C:/Users/wesley/git/groundstation/groundstation/580.jpg");
+        targetListMenu = new QMenuBar;
+
+        mainPic = new MainPicWidget();
+        tabWindow->addTab(mainPic, "Mainpic");
+        //setCentralWidget(mainPic);
+
+        targetList = new TargListMainWindow(); // Have consistent naming later...
+        tabWindow->addTab(targetList, "Targetlist");
+        targetList->setMenuBar(targetListMenu);
+
+        mainPic->setPicture("../groundstation/580.jpg"); // Still temporary
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
-}
-
-void MainWindow::resizeEvent(QResizeEvent *event){
-    QWidget::resizeEvent(event);
-    mainPic->mainWindowResized();
 }

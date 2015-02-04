@@ -11,34 +11,41 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = gui
 TEMPLATE = app
 
+DEPENDPATH += targetlist \
+            backend
+INCLUDEPATH += targetlist \
+            backend
+
 RESOURCES += \
-    ../guilib/Resources.qrc
+    targetlist/Resources.qrc
 
 OTHER_FILES += \
-    ../guilib/Makefile
+    Makefile
 
 FORMS += \
     mainwindow.ui \
-    targetmaker.ui \
-    targlistmainwindow.ui
+    targetlist/targetmaker.ui \
+    targetlist/targlistmainwindow.ui
 
 HEADERS += \
     mainwindow.h \
-    target.h \
-    targetlist.h \
-    targetlistitem.h \
-    targetmaker.h \
-    targlistlib_global.h \
-    targlistmainwindow.h \
-    ui_targetmaker.h \
-    ui_targlistmainwindow.h
+    targetlist/targetlist.h \
+    targetlist/targetlistitem.h \
+    targetlist/targetmaker.h \
+    targetlist/targlistlib_global.h \
+    targetlist/targlistmainwindow.h \
+    targetlist/ui_targetmaker.h \
+    targetlist/ui_targlistmainwindow.h \
+    backend/targlistdata.h \
+    backend/target.h
 
 SOURCES += \
     main.cpp \
     mainwindow.cpp \
-    target.cpp \
-    targetlist.cpp \
-    targetlistitem.cpp \
-    targetmaker.cpp \
-    targlistmainwindow.cpp
+    targetlist/targetlist.cpp \
+    targetlist/targetlistitem.cpp \
+    targetlist/targetmaker.cpp \
+    targetlist/targlistmainwindow.cpp \
+    backend/targlistdata.cpp \
+    backend/target.cpp
 
