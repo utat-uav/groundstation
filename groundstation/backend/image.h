@@ -8,9 +8,13 @@
  * @brief The image class is the target class for images.
  */
 
+// Not to be confused with QImage
+
+class Target;
+
 class Image
 {
-    Q_OBJECT
+    //Q_OBJECT
 private:
     QString path; // Name of image...
     QString description; // Description of image, if applicable

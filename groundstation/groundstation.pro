@@ -63,7 +63,7 @@ HEADERS  += mainwindow.h \
     # targetlist-old/targetlist/targetmaker.h \
     backend/target.h \
     backend/image.h \
-    backend/backend_common.h
+    backend/backend.h
 
 FORMS    += mainwindow.ui \
     targetlist/targetmaker.ui \

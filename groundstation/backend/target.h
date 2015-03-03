@@ -8,12 +8,14 @@
  * @brief The target class acts as the actual information storage thing for targets. Well, ideally.
  */
 
+class Image;
+
 class Target
 {
-    Q_OBJECT
+    //Q_OBJECT
 private:
     QString name;
-    QString imgpath;
+    QString imgpath; // path of target's (thumbnail) image
     QString description;
     QPair<double, double> coords;
     QMap<QString, Image*> images;

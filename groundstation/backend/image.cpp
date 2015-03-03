@@ -1,14 +1,16 @@
 #include "image.h"
 
+/*
 Image::Image(QWidget *parent) :
     QMap(parent)
 {
 }
+*/
 
 Image::Image(QString path, double x, double y)
 {
     this->path = path;
-    this->coords = make_pair(x, y);
+    this->coords = qMakePair(x, y);
 }
 
 QString Image::getPath()
@@ -31,22 +33,22 @@ Target* Image::getTarget(QString name)
     return this->targets[name];
 }
 
-void setPath(QString path)
+void Image::setPath(QString dir)
 {
-    this->path = path;
+    this->path = dir;
 }
 
-void setDesc(QString desc)
+void Image::setDesc(QString desc)
 {
     this->description = desc;
 }
 
-void setCoords(double x, double y)
+void Image::setCoords(double x, double y)
 {
-    this->coords = make_pair(x, y);
+    this->coords = qMakePair(x, y);
 }
 
-void addTarget(Target* target)
+void Image::addTarget(Target& target)
 {
-    this->targets.insert(target);
+    this->targets.insert(/*target.getName()*/"A", &target);
 }
