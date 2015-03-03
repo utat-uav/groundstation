@@ -32,6 +32,7 @@ public:
     QWidget *centralWidget;
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout;
+    QCommandLinkButton *commandLinkButton;
     QCommandLinkButton *newButton;
     QCommandLinkButton *editButton;
     QCommandLinkButton *deleteButton;
@@ -58,13 +59,13 @@ public:
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setSpacing(0);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
+        commandLinkButton = new QCommandLinkButton(centralWidget);
+        commandLinkButton->setObjectName(QStringLiteral("commandLinkButton"));
+
+        horizontalLayout->addWidget(commandLinkButton);
+
         newButton = new QCommandLinkButton(centralWidget);
         newButton->setObjectName(QStringLiteral("newButton"));
-        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-        sizePolicy.setHorizontalStretch(0);
-        sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(newButton->sizePolicy().hasHeightForWidth());
-        newButton->setSizePolicy(sizePolicy);
         QIcon icon;
         icon.addFile(QStringLiteral(":/files/round75.png"), QSize(), QIcon::Normal, QIcon::Off);
         newButton->setIcon(icon);
@@ -129,11 +130,11 @@ public:
         __qtablewidgetitem3->setFont(font);
         targetListTable->setHorizontalHeaderItem(3, __qtablewidgetitem3);
         targetListTable->setObjectName(QStringLiteral("targetListTable"));
-        QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Expanding);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(targetListTable->sizePolicy().hasHeightForWidth());
-        targetListTable->setSizePolicy(sizePolicy1);
+        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(targetListTable->sizePolicy().hasHeightForWidth());
+        targetListTable->setSizePolicy(sizePolicy);
         QFont font1;
         font1.setPointSize(11);
         targetListTable->setFont(font1);
@@ -167,6 +168,7 @@ public:
     {
         TargListMainWindow->setWindowTitle(QApplication::translate("TargListMainWindow", "MainWindow", 0));
         actionExport->setText(QApplication::translate("TargListMainWindow", "Export", 0));
+        commandLinkButton->setText(QApplication::translate("TargListMainWindow", "PushButton", 0));
 #ifndef QT_NO_TOOLTIP
         newButton->setToolTip(QApplication::translate("TargListMainWindow", "<html><head/><body><p>Shortcut: <span style=\" font-weight:600;\">ctrl+n</span></p></body></html>", 0));
 #endif // QT_NO_TOOLTIP

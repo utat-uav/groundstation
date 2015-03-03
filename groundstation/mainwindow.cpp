@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
 #include <QDebug>
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -9,9 +9,9 @@ MainWindow::MainWindow(QWidget *parent) :
         ui->setupUi(this);
 
         tabWindow = new QTabWidget;
+        mainMenu = new QMenuBar;
         setCentralWidget(tabWindow);
-
-        targetListMenu = new QMenuBar;
+        setMenuBar(mainMenu);
 
         mainPic = new MainPicWidget();
         tabWindow->addTab(mainPic, "Mainpic");
@@ -19,7 +19,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
         targetList = new TargListMainWindow(); // Have consistent naming later...
         tabWindow->addTab(targetList, "Targetlist");
-        targetList->setMenuBar(targetListMenu);
+
 
         mainPic->setPicture("../groundstation/580.jpg"); // Still temporary
 }

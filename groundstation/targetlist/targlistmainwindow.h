@@ -5,6 +5,12 @@
 #include "targetmaker.h"
 #include "targetlist.h"
 
+#include "ui_targlistmainwindow.h"
+#include <QtAlgorithms>
+#include <QDebug>
+#include <QHeaderView>
+#include <QTableWidget>
+
 namespace Ui {
 class TargListMainWindow;
 }

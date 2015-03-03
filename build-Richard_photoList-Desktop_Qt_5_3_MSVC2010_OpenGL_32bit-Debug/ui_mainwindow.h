@@ -29,6 +29,9 @@ public:
     QWidget *centralWidget;
     QPushButton *hideImage;
     QPushButton *showImage;
+    QPushButton *deleteImage;
+    QPushButton *renameImage;
+    QPushButton *hello;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -42,12 +45,23 @@ public:
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         hideImage = new QPushButton(centralWidget);
         hideImage->setObjectName(QStringLiteral("hideImage"));
-        hideImage->setGeometry(QRect(20, 10, 113, 32));
+        hideImage->setGeometry(QRect(20, 20, 113, 32));
         hideImage->setMaximumSize(QSize(300, 50));
         showImage = new QPushButton(centralWidget);
         showImage->setObjectName(QStringLiteral("showImage"));
-        showImage->setGeometry(QRect(80, 50, 113, 32));
+        showImage->setGeometry(QRect(140, 40, 113, 32));
         showImage->setMaximumSize(QSize(300, 50));
+        deleteImage = new QPushButton(centralWidget);
+        deleteImage->setObjectName(QStringLiteral("deleteImage"));
+        deleteImage->setGeometry(QRect(260, 20, 113, 32));
+        deleteImage->setMaximumSize(QSize(300, 50));
+        renameImage = new QPushButton(centralWidget);
+        renameImage->setObjectName(QStringLiteral("renameImage"));
+        renameImage->setGeometry(QRect(120, 90, 113, 32));
+        renameImage->setMaximumSize(QSize(300, 50));
+        hello = new QPushButton(centralWidget);
+        hello->setObjectName(QStringLiteral("hello"));
+        hello->setGeometry(QRect(160, 150, 113, 32));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -70,6 +84,9 @@ public:
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", 0));
         hideImage->setText(QApplication::translate("MainWindow", "Hide Image", 0));
         showImage->setText(QApplication::translate("MainWindow", "Show Image", 0));
+        deleteImage->setText(QApplication::translate("MainWindow", "Delete", 0));
+        renameImage->setText(QApplication::translate("MainWindow", "Rename", 0));
+        hello->setText(QApplication::translate("MainWindow", "Hello", 0));
     } // retranslateUi
 
 };

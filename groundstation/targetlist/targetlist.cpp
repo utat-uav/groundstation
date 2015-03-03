@@ -45,6 +45,9 @@ void TargetList::refreshTable()
 
 void TargetList::addNewRow(QString fileName, QString name, QString coordinates, QString description)
 {
+    Target newTarget(name, filename, coordinates, description);
+    targlist.insert(newTarget);
+
     // Creates image preview item
     QTableWidgetItem *image = new QTableWidgetItem();
     QBrush brush;

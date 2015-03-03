@@ -66,7 +66,7 @@ MainWindow::MainWindow(QWidget *parent) :
             // fileinfo contains the path of every image
             QFileInfo fileinfo = fileInfoList->at(listCount);
 
-            auto int index = k*columns + j;
+            /*auto*/ int index = k*columns + j;
             imageLabel[index] = new Label();
             imageName[index] = new Label();
             imageMap[index] = new QPixmap(fileinfo.absoluteFilePath());
@@ -199,7 +199,7 @@ void MainWindow::addImage() {
             // fileinfo contains the path of every image
             QFileInfo fileinfo = fileInfoList->at(listCount);
 
-            auto int index = k*columns + j;
+            /*auto*/ int index = k*columns + j;
             imageLabel[index] = new Label();
             imageName[index] = new Label();
             imageMap[index] = new QPixmap(fileinfo.absoluteFilePath());

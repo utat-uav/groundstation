@@ -1,11 +1,4 @@
 #include "targlistmainwindow.h"
-#include "ui_targlistmainwindow.h"
-#include "targetmaker.h"
-#include "targetlist.h"
-#include <QtAlgorithms>
-#include <QDebug>
-#include <QHeaderView>
-#include <QTableWidget>
 
 TargListMainWindow::TargListMainWindow(QWidget *parent) :
     QMainWindow(parent),

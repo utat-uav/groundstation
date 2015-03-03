@@ -1,5 +1,6 @@
 #include "MainPicDisplay.h"
-using namespace std;
+
+//using namespace std;
 
 MainPicDisplay::MainPicDisplay(const QVector<Target>& itargets, QWidget *parent) :
     QLabel(parent), TARGET_DRAW_SIZE(10), targets(itargets)

@@ -498,6 +498,11 @@ debug\moc_mainwindow.cpp: ..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\QMai
 		..\..\..\Qt\5.3\msvc2010_opengl\include\QtCore\qtimezone.h \
 		..\..\..\Qt\5.3\msvc2010_opengl\include\QtCore\qxmlstream.h \
 		..\..\..\Qt\5.3\msvc2010_opengl\include\QtCore\qtcoreversion.h \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\QMenuBar \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qmenubar.h \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qmenu.h \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qaction.h \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qactiongroup.h \
 		..\groundstation\targetlist\targlistmainwindow.h \
 		..\groundstation\targetlist\targetmaker.h \
 		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\QDialog \
@@ -506,8 +511,6 @@ debug\moc_mainwindow.cpp: ..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\QMai
 		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\QTableWidgetItem \
 		..\groundstation\targetlist\ui_targlistmainwindow.h \
 		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\QAction \
-		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qaction.h \
-		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qactiongroup.h \
 		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\QApplication \
 		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qapplication.h \
 		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qdesktopwidget.h \
@@ -522,6 +525,7 @@ debug\moc_mainwindow.cpp: ..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\QMai
 		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\QToolBar \
 		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qtoolbar.h \
 		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\QVBoxLayout \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtCore\QtAlgorithms \
 		..\groundstation\mainwindow.h
 	C:\Qt\5.3\msvc2010_opengl\bin\moc.exe $(DEFINES) -D_MSC_VER=1600 -D_WIN32 -IC:/Qt/5.3/msvc2010_opengl/mkspecs/win32-msvc2010 -IC:/Jesse/groundstation/groundstation -IC:/Jesse/groundstation/groundstation/targetlist -IC:/Qt/5.3/msvc2010_opengl/include -IC:/Qt/5.3/msvc2010_opengl/include/QtWidgets -IC:/Qt/5.3/msvc2010_opengl/include/QtGui -IC:/Qt/5.3/msvc2010_opengl/include/QtCore -I. ..\groundstation\mainwindow.h -o debug\moc_mainwindow.cpp
 
@@ -1032,6 +1036,39 @@ debug\moc_targlistmainwindow.cpp: ..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidg
 		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\QLabel \
 		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qlabel.h \
 		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\QWidget \
+		..\groundstation\targetlist\ui_targlistmainwindow.h \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtCore\QVariant \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\QAction \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qaction.h \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qactiongroup.h \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\QApplication \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qapplication.h \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtCore\qcoreapplication.h \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtCore\qeventloop.h \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qdesktopwidget.h \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtGui\qguiapplication.h \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtGui\qinputmethod.h \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\QButtonGroup \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qbuttongroup.h \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\QCommandLinkButton \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qcommandlinkbutton.h \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qpushbutton.h \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qabstractbutton.h \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\QHBoxLayout \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qboxlayout.h \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qlayout.h \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qlayoutitem.h \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qgridlayout.h \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\QHeaderView \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qheaderview.h \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\QStatusBar \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qstatusbar.h \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\QTableWidget \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\QToolBar \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qtoolbar.h \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\QVBoxLayout \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtCore\QtAlgorithms \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtCore\QDebug \
 		..\groundstation\targetlist\targlistmainwindow.h
 	C:\Qt\5.3\msvc2010_opengl\bin\moc.exe $(DEFINES) -D_MSC_VER=1600 -D_WIN32 -IC:/Qt/5.3/msvc2010_opengl/mkspecs/win32-msvc2010 -IC:/Jesse/groundstation/groundstation -IC:/Jesse/groundstation/groundstation/targetlist -IC:/Qt/5.3/msvc2010_opengl/include -IC:/Qt/5.3/msvc2010_opengl/include/QtWidgets -IC:/Qt/5.3/msvc2010_opengl/include/QtGui -IC:/Qt/5.3/msvc2010_opengl/include/QtCore -I. ..\groundstation\targetlist\targlistmainwindow.h -o debug\moc_targlistmainwindow.cpp
 
@@ -1325,6 +1362,11 @@ debug\main.obj: ..\groundstation\main.cpp ..\groundstation\mainwindow.h \
 		..\..\..\Qt\5.3\msvc2010_opengl\include\QtCore\qtimezone.h \
 		..\..\..\Qt\5.3\msvc2010_opengl\include\QtCore\qxmlstream.h \
 		..\..\..\Qt\5.3\msvc2010_opengl\include\QtCore\qtcoreversion.h \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\QMenuBar \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qmenubar.h \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qmenu.h \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qaction.h \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qactiongroup.h \
 		..\groundstation\targetlist\targlistmainwindow.h \
 		..\groundstation\targetlist\targetmaker.h \
 		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\QDialog \
@@ -1333,8 +1375,6 @@ debug\main.obj: ..\groundstation\main.cpp ..\groundstation\mainwindow.h \
 		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\QTableWidgetItem \
 		..\groundstation\targetlist\ui_targlistmainwindow.h \
 		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\QAction \
-		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qaction.h \
-		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qactiongroup.h \
 		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\QApplication \
 		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qapplication.h \
 		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qdesktopwidget.h \
@@ -1348,7 +1388,8 @@ debug\main.obj: ..\groundstation\main.cpp ..\groundstation\mainwindow.h \
 		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qstatusbar.h \
 		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\QToolBar \
 		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qtoolbar.h \
-		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\QVBoxLayout
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\QVBoxLayout \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtCore\QtAlgorithms
 
 debug\mainwindow.obj: ..\groundstation\mainwindow.cpp ..\groundstation\mainwindow.h \
 		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\QMainWindow \
@@ -1614,6 +1655,11 @@ debug\mainwindow.obj: ..\groundstation\mainwindow.cpp ..\groundstation\mainwindo
 		..\..\..\Qt\5.3\msvc2010_opengl\include\QtCore\qtimezone.h \
 		..\..\..\Qt\5.3\msvc2010_opengl\include\QtCore\qxmlstream.h \
 		..\..\..\Qt\5.3\msvc2010_opengl\include\QtCore\qtcoreversion.h \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\QMenuBar \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qmenubar.h \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qmenu.h \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qaction.h \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qactiongroup.h \
 		..\groundstation\targetlist\targlistmainwindow.h \
 		..\groundstation\targetlist\targetmaker.h \
 		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\QDialog \
@@ -1622,8 +1668,6 @@ debug\mainwindow.obj: ..\groundstation\mainwindow.cpp ..\groundstation\mainwindo
 		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\QTableWidgetItem \
 		..\groundstation\targetlist\ui_targlistmainwindow.h \
 		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\QAction \
-		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qaction.h \
-		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qactiongroup.h \
 		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\QApplication \
 		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qapplication.h \
 		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qdesktopwidget.h \
@@ -1638,10 +1682,8 @@ debug\mainwindow.obj: ..\groundstation\mainwindow.cpp ..\groundstation\mainwindo
 		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\QToolBar \
 		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qtoolbar.h \
 		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\QVBoxLayout \
-		ui_mainwindow.h \
-		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\QMenuBar \
-		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qmenubar.h \
-		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qmenu.h
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtCore\QtAlgorithms \
+		ui_mainwindow.h
 
 debug\mainpicdisplay.obj: ..\groundstation\mainpic\mainpicdisplay.cpp ..\groundstation\mainpic\MainPicDisplay.h \
 		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\QLabel \
@@ -2518,6 +2560,17 @@ debug\targetmaker.obj: ..\groundstation\targetlist\targetmaker.cpp ..\groundstat
 		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qtablewidget.h \
 		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qtableview.h \
 		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\QWidget \
+		..\groundstation\targetlist\ui_targlistmainwindow.h \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\QCommandLinkButton \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qcommandlinkbutton.h \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qpushbutton.h \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\QStatusBar \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qstatusbar.h \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\QTableWidget \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\QToolBar \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qtoolbar.h \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtCore\QtAlgorithms \
+		..\..\..\Qt\5.3\msvc2010_opengl\include\QtCore\QDebug \
 		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\QFileDialog \
 		..\..\..\Qt\5.3\msvc2010_opengl\include\QtWidgets\qfiledialog.h \
 		..\..\..\Qt\5.3\msvc2010_opengl\include\QtCore\qdir.h \

@@ -8,8 +8,12 @@
 #include "mainpic/targetfilehandler.h"
 
 #include <QtCore>
+#include <QMenuBar>
 #include "targlistmainwindow.h"
 #include "ui_targlistmainwindow.h"
+
+#include "backend/image.h"
+#include "backend/target.h"
 
 using namespace std;
 namespace Ui {
@@ -31,12 +35,14 @@ public slots:
 
 private:
     Ui::MainWindow *ui;
-    QTabWidget* tabWindow;
+    QTabWidget* tabWindow; // To hold EVERYTHING
 
     MainPicWidget* mainPic;
+    TargListMainWindow* targetList; // Change naming?
+    QMenuBar* mainMenu; // Possibly not even necessary
 
-    TargListMainWindow* targetList;
-    QMenuBar* targetListMenu;
+    QMap<QString, Image*> imaglist;
+    QMap<QString, Target*> targlist;
 };
 
 #endif // MAINWINDOW_H

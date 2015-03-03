@@ -24,13 +24,14 @@
        <number>0</number>
       </property>
       <item>
-       <widget class="QCommandLinkButton" name="newButton">
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
+       <widget class="QCommandLinkButton" name="commandLinkButton">
+        <property name="text">
+         <string>PushButton</string>
         </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QCommandLinkButton" name="newButton">
         <property name="toolTip">
          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Shortcut: &lt;span style=&quot; font-weight:600;&quot;&gt;ctrl+n&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
         </property>
@@ -38,7 +39,7 @@
          <string>New</string>
         </property>
         <property name="icon">
-         <iconset resource="Resources.qrc">
+         <iconset>
           <normaloff>:/files/round75.png</normaloff>:/files/round75.png</iconset>
         </property>
         <property name="iconSize">
@@ -61,7 +62,7 @@
          <string>Edit</string>
         </property>
         <property name="icon">
-         <iconset resource="Resources.qrc">
+         <iconset>
           <normaloff>:/files/clasic.png</normaloff>:/files/clasic.png</iconset>
         </property>
         <property name="iconSize">
@@ -84,7 +85,7 @@
          <string>Delete</string>
         </property>
         <property name="icon">
-         <iconset resource="Resources.qrc">
+         <iconset>
           <normaloff>:/files/delete85.png</normaloff>:/files/delete85.png</iconset>
         </property>
         <property name="iconSize">
@@ -107,7 +108,7 @@
          <string>Up</string>
         </property>
         <property name="icon">
-         <iconset resource="Resources.qrc">
+         <iconset>
           <normaloff>:/files/up.png</normaloff>:/files/up.png</iconset>
         </property>
         <property name="iconSize">
@@ -130,7 +131,7 @@
          <string>Down</string>
         </property>
         <property name="icon">
-         <iconset resource="Resources.qrc">
+         <iconset>
           <normaloff>:/files/down.png</normaloff>:/files/down.png</iconset>
         </property>
         <property name="iconSize">
@@ -250,8 +251,6 @@
   </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources>
-  <include location="Resources.qrc"/>
- </resources>
+ <resources/>
  <connections/>
 </ui>
