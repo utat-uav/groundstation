@@ -12,6 +12,8 @@ MainWindow::MainWindow(QWidget *parent) :
     rowCount = 0;
     items = new QList<ImageWidget*>;
 
+    //ui->photoListTable->;
+
     // Sets number of columns
     setColumnCount(5);
 }
@@ -57,6 +59,8 @@ void MainWindow::addItem(QString filePath)
 
     // Adds object to the table in the correct position
     ui->photoListTable->setCellWidget(r, c, newImage);
+
+    refreshTable();
 }
 
 void MainWindow::resizeTable()
@@ -68,7 +72,7 @@ void MainWindow::resizeTable()
     cellWidth = tableWidth/colCount;
 
     // Calculates cell height based on cell width
-    cellHeight = cellWidth * 9/10;
+    cellHeight = cellWidth * 4/5 + 23;
 
     // Rethinks the number of columns
     if (tableWidth < 800) {
@@ -119,6 +123,7 @@ void MainWindow::refreshTable()
     // Sets new table contents
     int itemCount = 0;
     for (int r = 0; r < rowCount; r++) {
+
         for (int c = 0; c < colCount; c++) {
             if (!(r == rowCount-1 && c == cMax)) { // ends if the end of the list is hit
                 // Sets the widget
@@ -130,6 +135,14 @@ void MainWindow::refreshTable()
             }
             else{
                 break;
+            }
+        }
+
+        // Disables extra spaces
+        if (r == rowCount-1) {
+            for (int c = cMax; c < colCount; c++) {
+                ui->photoListTable->setItem(r, c, new QTableWidgetItem());
+                ui->photoListTable->item(r, c)->setFlags(Qt::ItemIsSelectable);
             }
         }
     }
@@ -172,19 +185,24 @@ void MainWindow::on_editButton_clicked()
     QModelIndexList selected = select->selectedIndexes();
 
     if (select->hasSelection() && selected.length() == 1) {
+        // Gets the selected index
+        QList<QModelIndex>::iterator i = selected.begin();
+        int selectedIndex = (i->row())*colCount + i->column();
+
         // Makes an edit dialog
         ItemMaker *editDialog = new ItemMaker();
         editDialog->setModal(true);
         editDialog->setWindowTitle("Edit");
+
+        // Sets initial information
+        editDialog->setTitle(items->at(selectedIndex)->title);
+        editDialog->setFilePath(items->at(selectedIndex)->path);
 
         // Starts the dialog
         editDialog->exec();
 
         // If okay was pressed in the edit dialog
         if (editDialog->accepted) {
-            QList<QModelIndex>::iterator i = selected.begin();
-            int selectedIndex = (i->row())*colCount + i->column(); // gets the selected index
-
             // Gets information from edit dialog
             QString title = editDialog->getTitle();
             QString filePath = editDialog->getFilePath();

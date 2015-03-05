@@ -17,6 +17,8 @@ public:
     bool accepted;
     QString getTitle();
     QString getFilePath();
+    void setTitle(QString title);
+    void setFilePath(QString path);
     ~ItemMaker();
 
 private slots:

@@ -34,3 +34,13 @@ QString ItemMaker::getFilePath()
 {
     return ui->URLInput->text();
 }
+
+void ItemMaker::setTitle(QString title)
+{
+    ui->titleInput->setText(title);
+}
+
+void ItemMaker::setFilePath(QString path)
+{
+    ui->URLInput->setText(path);
+}
