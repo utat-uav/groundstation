@@ -100,6 +100,8 @@ void MainWindow::refreshTable()
     for (int i = 0; i < items->size(); i++) {
         ImageWidget *temp = new ImageWidget();
         // Copy all information over
+        temp->setImage(items->at(i)->path);
+        temp->setTitle(items->at(i)->title);
 
         itemsCopy->append(temp);
     }
@@ -161,5 +163,35 @@ void MainWindow::on_deleteItemButton_clicked()
         ui->photoListTable->selectionModel()->clearSelection();
 
         refreshTable();
+    }
+}
+
+void MainWindow::on_editButton_clicked()
+{
+    QItemSelectionModel *select = ui->photoListTable->selectionModel();
+    QModelIndexList selected = select->selectedIndexes();
+
+    if (select->hasSelection() && selected.length() == 1) {
+        // Makes an edit dialog
+        ItemMaker *editDialog = new ItemMaker();
+        editDialog->setModal(true);
+        editDialog->setWindowTitle("Edit");
+
+        // Starts the dialog
+        editDialog->exec();
+
+        // If okay was pressed in the edit dialog
+        if (editDialog->accepted) {
+            QList<QModelIndex>::iterator i = selected.begin();
+            int selectedIndex = (i->row())*colCount + i->column(); // gets the selected index
+
+            // Gets information from edit dialog
+            QString title = editDialog->getTitle();
+            QString filePath = editDialog->getFilePath();
+
+            // Sets item information
+            items->at(selectedIndex)->setTitle(title);
+            items->at(selectedIndex)->setImage(filePath);
+        }
     }
 }

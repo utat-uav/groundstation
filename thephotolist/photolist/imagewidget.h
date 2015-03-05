@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QLabel>
+#include <QPixmap>
 
 namespace Ui {
 class ImageWidget;
@@ -14,6 +15,10 @@ class ImageWidget : public QWidget
 
 public:
     explicit ImageWidget(QWidget *parent = 0);
+    QString title;
+    QString path;
+    void setTitle(QString name);
+    void setImage(QString filePath);
     ~ImageWidget();
 
 private:

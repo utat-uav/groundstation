@@ -9,6 +9,7 @@
 #include <QItemSelectionModel>
 #include <QModelIndexList>
 #include <QtAlgorithms>
+#include <itemmaker.h>
 
 namespace Ui {
 class MainWindow;
@@ -26,6 +27,8 @@ private slots:
     void on_addItemButton_clicked();
 
     void on_deleteItemButton_clicked();
+
+    void on_editButton_clicked();
 
 protected:
     void resizeEvent(QResizeEvent *e);

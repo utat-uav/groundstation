@@ -27,6 +27,13 @@
          </widget>
         </item>
         <item>
+         <widget class="QCommandLinkButton" name="editButton">
+          <property name="text">
+           <string>Edit</string>
+          </property>
+         </widget>
+        </item>
+        <item>
          <widget class="QCommandLinkButton" name="deleteItemButton">
           <property name="text">
            <string>Delete</string>
@@ -84,7 +91,7 @@
      <x>0</x>
      <y>0</y>
      <width>700</width>
-     <height>21</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>

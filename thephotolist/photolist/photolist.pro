@@ -14,13 +14,16 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    imagewidget.cpp
+    imagewidget.cpp \
+    itemmaker.cpp
 
 HEADERS  += mainwindow.h \
-    imagewidget.h
+    imagewidget.h \
+    itemmaker.h
 
 FORMS    += mainwindow.ui \
-    imagewidget.ui
+    imagewidget.ui \
+    itemmaker.ui
 
 RESOURCES += \
     resources.qrc
