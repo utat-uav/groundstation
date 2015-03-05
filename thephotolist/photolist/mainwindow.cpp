@@ -12,8 +12,6 @@ MainWindow::MainWindow(QWidget *parent) :
     rowCount = 0;
     items = new QList<ImageWidget*>;
 
-    //ui->photoListTable->;
-
     // Sets number of columns
     setColumnCount(5);
 }
@@ -44,9 +42,9 @@ void MainWindow::addItem(QString filePath)
     resizeTable();
 
     // Creates new item object and adds it to the list of items
-    ImageWidget *newImage = new ImageWidget();
-    items->append(newImage);
+    appendItem(":/images/Untitled.png", "New Item");
 
+    /*
     // Calculate and set the number of rows based on number of items and number of columns
     rowCount = ceil((double) items->size() / (double) colCount);
     ui->photoListTable->setRowCount(rowCount);
@@ -58,7 +56,7 @@ void MainWindow::addItem(QString filePath)
     int c = (items->size() - r*colCount) % (colCount+1) - 1;
 
     // Adds object to the table in the correct position
-    ui->photoListTable->setCellWidget(r, c, newImage);
+    ui->photoListTable->setCellWidget(r, c, newImage); */
 
     refreshTable();
 }
@@ -75,7 +73,7 @@ void MainWindow::resizeTable()
     cellHeight = cellWidth * 4/5 + 23;
 
     // Rethinks the number of columns
-    if (tableWidth < 800) {
+    if (tableWidth < 1150) {
         if (colCount != 4) {
             setColumnCount(4);
             refreshTable();
@@ -99,13 +97,16 @@ void MainWindow::resizeTable()
 
 void MainWindow::refreshTable()
 {
+    resizeTable();
+
     // Makes copy of the items
-    QList<ImageWidget *> *itemsCopy = new QList<ImageWidget*>;
+    QList<ImageWidget *> *itemsCopy = new QList<ImageWidget *>;
     for (int i = 0; i < items->size(); i++) {
         ImageWidget *temp = new ImageWidget();
         // Copy all information over
-        temp->setImage(items->at(i)->path);
+        temp->setImage(items->at(i)->image);
         temp->setTitle(items->at(i)->title);
+        temp->path = items->at(i)->path;
 
         itemsCopy->append(temp);
     }
@@ -126,11 +127,11 @@ void MainWindow::refreshTable()
 
         for (int c = 0; c < colCount; c++) {
             if (!(r == rowCount-1 && c == cMax)) { // ends if the end of the list is hit
-                // Sets the widget
-                ui->photoListTable->setCellWidget(r, c, itemsCopy->at(itemCount));
-
-                // items is refilled
                 items->replace(itemCount, itemsCopy->at(itemCount));
+
+                // Sets the widget
+                ui->photoListTable->setCellWidget(r, c, items->at(itemCount));
+
                 itemCount++;
             }
             else{
@@ -146,9 +147,6 @@ void MainWindow::refreshTable()
             }
         }
     }
-
-    // Deletes copy of items
-    delete itemsCopy;
 }
 
 void MainWindow::on_deleteItemButton_clicked()
@@ -168,8 +166,8 @@ void MainWindow::on_deleteItemButton_clicked()
 
         // Deletes items in the table
         for (int i = 0; i < deletionOrder.length(); i++) {
-            items->removeAt(deletionOrder.at(i));
-            // qDebug() << "index: " << deletionOrder.at(i);
+            int index = deletionOrder.at(i);
+            items->removeAt(index);
         }
 
         // Clears selection
@@ -212,4 +210,43 @@ void MainWindow::on_editButton_clicked()
             items->at(selectedIndex)->setImage(filePath);
         }
     }
+}
+
+void MainWindow::on_loadButton_clicked()
+{
+    // Gets the directory from a separate window
+    QString dir = QFileDialog::getExistingDirectory(this, tr("Open Directory"), "/home", QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks);
+
+    // Create filter
+    QStringList nameFilter;
+    nameFilter.append("*.png");
+    nameFilter.append("*.jpg");
+
+    // Scans through directory, applying the filter
+    QDir directory(dir);
+    QStringList fileList = directory.entryList(nameFilter);
+    for (int i = 0; i < fileList.size(); i++) {
+        appendItem(dir+"/"+fileList.at(i), fileList.at(i));
+    }
+
+    refreshTable();
+}
+
+void MainWindow::appendItem(QString filePath, QString title)
+{
+    // Creates item
+    ImageWidget *newWidget = new ImageWidget();
+    newWidget->setTitle(title);
+    newWidget->setImage(filePath);
+
+    items->append(newWidget);
+}
+
+void MainWindow::indexToCoordinates(int index, int *r, int *c)
+{
+    // Row index
+    *r = ceil((double) (index+1) / (double) colCount) - 1;
+
+    // Column index
+    *c = ((index+1) - *r*colCount) % (colCount+1) - 1;
 }

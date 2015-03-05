@@ -10,7 +10,10 @@ ImageWidget::ImageWidget(QWidget *parent) :
     ui->setupUi(this);
 
     // Initialize imageLabel
-    setImage(":/images/Untitled.png");
+    //setImage(":/images/Untitled.png");
+
+    //ui->imageLabel->setScaledContents(true);
+    ui->imageLabel->setSizePolicy( QSizePolicy::Ignored, QSizePolicy::Ignored );
 }
 
 ImageWidget::~ImageWidget()
@@ -26,9 +29,18 @@ void ImageWidget::setTitle(QString name)
 
 void ImageWidget::setImage(QString filePath)
 {
-    if (filePath != "") {
-        QPixmap pix(filePath);
-        ui->imageLabel->setPixmap(pix);
+    if (filePath != "") {        
+        QPixmap *pix = new QPixmap();
+        pix->load(filePath);
+        image = pix->scaled(240, 240, Qt::KeepAspectRatioByExpanding, Qt::FastTransformation);
+        ui->imageLabel->setPixmap(image);
         path = filePath;
+        delete pix;
     }
+}
+
+void ImageWidget::setImage(QPixmap resizedImage)
+{
+    ui->imageLabel->setPixmap(resizedImage);
+    image = resizedImage;
 }

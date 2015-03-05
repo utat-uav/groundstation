@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QLabel>
 #include <QPixmap>
+#include <QSize>
 
 namespace Ui {
 class ImageWidget;
@@ -17,8 +18,10 @@ public:
     explicit ImageWidget(QWidget *parent = 0);
     QString title;
     QString path;
+    QPixmap image;
     void setTitle(QString name);
     void setImage(QString filePath);
+    void setImage(QPixmap resizedImage);
     ~ImageWidget();
 
 private:

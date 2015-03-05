@@ -9,7 +9,9 @@
 #include <QItemSelectionModel>
 #include <QModelIndexList>
 #include <QtAlgorithms>
-#include <itemmaker.h>
+#include "itemmaker.h"
+#include <QDirIterator>
+#include <QtCore/QCoreApplication>
 
 namespace Ui {
 class MainWindow;
@@ -30,12 +32,16 @@ private slots:
 
     void on_editButton_clicked();
 
+    void on_loadButton_clicked();
+
 protected:
     void resizeEvent(QResizeEvent *e);
     void resizeTable();
     void addItem(QString filePath);
+    void appendItem(QString filePath, QString title);
     void refreshTable();
     void setColumnCount(int col);
+    void indexToCoordinates(int index, int *r, int *c);
 
 private:
     Ui::MainWindow *ui;
