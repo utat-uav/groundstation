@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent) :
         tabWindow->addTab(targetList, "Targetlist");
 
 
-        mainPic->setPicture("../groundstation/580.jpg"); // Still temporary
+        mainPic->setPicture("/Users/clarkcai/groundstation/groundstation/580.jpg"); // Still temporary
 }
 
 MainWindow::~MainWindow()

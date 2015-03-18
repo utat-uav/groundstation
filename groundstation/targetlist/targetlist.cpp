@@ -5,6 +5,11 @@
 #include <QLabel>
 #include <QHeaderView>
 
+QList<TargetListItem*> *rows;
+//rows = new QList<TargetListItem*>;
+
+
+
 TargetList::TargetList(QTableWidget *targetListTable)
 {
     table = targetListTable;
