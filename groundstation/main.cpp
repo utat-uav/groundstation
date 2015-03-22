@@ -1,5 +1,11 @@
 #include "mainwindow.h"
 #include <QApplication>
+#include "targetlist.h"
+#include "targetlistitem.h"
+#include <QTableWidgetItem>
+#include <qDebug>
+#include <QLabel>
+#include <QHeaderView>
 
 int main(int argc, char *argv[])
 {

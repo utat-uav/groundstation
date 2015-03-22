@@ -1,4 +1,5 @@
-#include "target.h"
+﻿#include "target.h"
+#include <stdexcept>
 
 // Init some static variables
 // Init the serialization seperator character(s)
@@ -42,6 +43,7 @@ QTextStream& operator>>(QTextStream& strm, Target &t){
 
     // Make the object
     t = Target(vl);
+
     return strm;
 }
 
@@ -50,7 +52,7 @@ QVariant& Target::operator[](const QString& fieldName){
         return fields[fieldName];
     }
     // Error!
-    throw std::out_of_range((QString(fieldName) + " is not a valid field for Target.").toStdString());
+    throw out_of_range((QString(fieldName) + " is not a valid field for Target.").toStdString());
 }
 
 const QVariant& Target::operator[](const QString& fieldName) const{
