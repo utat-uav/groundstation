@@ -33,6 +33,7 @@ void MainPicDisplay::setMaxSize(const int& iwidth, const int& iheight){
 }
 
 void MainPicDisplay::zoomIn(){
+    // Zoom doesn't work unless the conditional is commented out
     if (width < 1000 && getHeight() < 1000){
         width = width * 1.2;
     }

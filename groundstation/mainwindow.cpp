@@ -20,7 +20,6 @@ MainWindow::MainWindow(QWidget *parent) :
         targetList = new TargListMainWindow(); // Have consistent naming later...
         tabWindow->addTab(targetList, "Targetlist");
 
-
         mainPic->setPicture("../groundstation/580.jpg"); // Still temporary
 }
 

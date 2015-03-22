@@ -35,12 +35,13 @@ public slots:
 
 private:
     Ui::MainWindow *ui;
-    QTabWidget* tabWindow; // To hold EVERYTHING
+    QTabWidget* tabWindow; // To hold everything
 
     MainPicWidget* mainPic;
     TargListMainWindow* targetList; // Change naming?
     QMenuBar* mainMenu; // Possibly not even necessary
 
+    // 'Global' data structures
     QMap<QString, Image*> imaglist;
     QMap<QString, Target*> targlist;
 };

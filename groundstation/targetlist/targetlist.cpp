@@ -46,6 +46,7 @@ void TargetList::refreshTable()
 void TargetList::addNewRow(QString fileName, QString name, QString coordinates, QString description)
 {
     //Target newTarget(name, filename, coordinates, description);
+    //Target* newtarget = new Target(name, fileName, 0, 0);
     //targlist.insert(newTarget);
 
     // Creates image preview item
